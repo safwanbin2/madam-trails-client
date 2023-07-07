@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const Info = ({ profile }) => {
     const { firstName, lastName, phone, email, location } = profile;
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [updatedDocuments, setUpdatedDocuments] = useState({
         phone: phone,
         location: ""
     })
 
     const handleUpdateInfo = info => {
-        fetch(`https://working-title-server.vercel.app/users/myprofile?email=${email}`, {
+        fetch(`http://localhost:5000/users/myprofile?email=${email}`, {
             method: "PUT",
             headers: {
                 "Content-type": "application/json"
@@ -23,7 +23,7 @@ const Info = ({ profile }) => {
                 console.log(data);
                 if (data.acknowledged) {
                     toast.success("Updated Successfully");
-                    navigate("/");
+                    window.location.reload();
                 }
             })
             .catch(err => {

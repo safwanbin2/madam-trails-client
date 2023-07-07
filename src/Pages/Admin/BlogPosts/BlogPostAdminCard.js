@@ -9,7 +9,7 @@ const BlogPostAdminCard = ({ post, refetch }) => {
     const handleDeletePost = id => {
         const consent = window.confirm("are you sure you want to delete the blog");
         if (consent) {
-            fetch(`https://working-title-server.vercel.app/blogs/delete?id=${id}`, {
+            fetch(`http://localhost:5000/blogs/delete?id=${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())

@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
             // products related routes and navigations
             {
                 path: "/product/:id",
-                loader: ({ params }) => fetch(`https://working-title-server.vercel.app/product/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
                 element: <ProductDetail />
             },
             // nav items navigations
@@ -68,7 +68,7 @@ export const router = createBrowserRouter([
             {
                 path: "/blog/:id",
                 element: <Post />,
-                loader: ({ params }) => fetch(`https://working-title-server.vercel.app/blogs/blog/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/blogs/blog/${params.id}`)
             },
             {
                 path: "/mycart",

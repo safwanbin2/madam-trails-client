@@ -52,7 +52,7 @@ const ProductDetail = () => {
             // "buyerId": ,
             "buyerEmail": user?.email
         }
-        fetch(`https://working-title-server.vercel.app/wishlist`, {
+        fetch(`http://localhost:5000/wishlist`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -82,7 +82,7 @@ const ProductDetail = () => {
             <div className='flex flex-col md:grid gap-4' style={{ gridTemplateColumns: "3fr 2fr" }}>
                 <img className='w-full h-[400px]' src={image} alt="" />
                 <div className='bg-[#ecebeb] shadow-md p-4 text-grey'>
-                    <h2 className='text-2xl font-semibold tracking-wider mb-2'>${price}</h2>
+                    <h2 className='text-2xl font-semibold tracking-wider mb-2'>₹ {price}</h2>
                     <h2 className='text-green-500 flex items-center  mb-2'><span className='text-2xl'><TiTick /></span> <span>Available</span></h2>
                     <div className='flex gap-4 items-center'>
                         <div>

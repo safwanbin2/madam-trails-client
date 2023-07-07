@@ -34,7 +34,7 @@ const AddBlogPost = () => {
                     blogger: user?.email
                 }
                 // posting to blogs collection
-                fetch(`https://working-title-server.vercel.app/blogs/add`, {
+                fetch(`http://localhost:5000/blogs/add`, {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json"

@@ -7,7 +7,7 @@ const saveUser = (email, firstName, lastName, phone,date) => {
         "phone": phone,
         "createDate": date
     }
-    fetch(`https://working-title-server.vercel.app/users`, {
+    fetch(`http://localhost:5000/users`, {
         method: "POST",
         headers: {
             "content-type": "application/json"

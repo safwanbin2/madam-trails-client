@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const CartItem = ({ cartItem, refetch, refetchSummary }) => {
-    console.log(cartItem);
+    // console.log(cartItem);
     const { productTitle, productSubTitle, addingDate, productPrice, quantity, productImage, productId, _id } = cartItem;
 
     const { countRefetch, setCountRefetch } = useContext(AuthContext);
     const handleRemoveFromCart = id => {
         const consent = window.confirm("Are you sure you want to remove item from Cart?");
         if (consent) {
-            fetch(`https://working-title-server.vercel.app/cart/delete?id=${id}`, {
+            fetch(`http://localhost:5000/cart/delete?id=${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())
@@ -40,7 +40,7 @@ const CartItem = ({ cartItem, refetch, refetchSummary }) => {
                 <h3 className='text-xs text-base-300'>{addingDate.slice(0, 10)}</h3>
             </div>
             <div className='flex justify-center items-center'>
-                <h3>${productPrice} x {quantity}</h3>
+                <h3>₹ {productPrice} x {quantity}</h3>
             </div>
             <div className='flex flex-col gap-2'>
                 <div className='flex justify-center items-center'>

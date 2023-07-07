@@ -30,7 +30,7 @@ const AddToCartModal = ({ product, setProduct, quantity }) => {
         if (!user) {
             return toast.error("Login to your account first")
         }
-        fetch(`https://working-title-server.vercel.app/cart/additem`, {
+        fetch(`http://localhost:5000/cart/additem`, {
             method: "POST",
             headers: {
                 "Content-type": "Application/json"
@@ -59,7 +59,7 @@ const AddToCartModal = ({ product, setProduct, quantity }) => {
             <form method="dialog" className="modal-box">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 <h3 className="text-grey  my-1">{title} - {subTitle}</h3>
-                <p className='text-2xl font-semibold text-primary my-1'>${price}</p>
+                <p className='text-2xl font-semibold text-primary my-1'>₹ {price}</p>
                 <h3 className='my-1'>Quantity: {quantity}</h3>
                 <div className="form-control mb-2">
                     <label className="label ps-0">

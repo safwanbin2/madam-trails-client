@@ -37,7 +37,7 @@ const AddProduct = () => {
                     isBoosted: false
                 }
                 // posting the new movie to the db
-                fetch(`https://working-title-server.vercel.app/products/add`, {
+                fetch(`http://localhost:5000/products/add`, {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"
@@ -126,7 +126,7 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control">
                         <label className="label ps-0">
-                            <span className="">Price in $</span>
+                            <span className="">Price in ₹ </span>
                         </label>
                         <input {
                             ...register("price", {

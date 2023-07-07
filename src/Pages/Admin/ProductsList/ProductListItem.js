@@ -11,7 +11,7 @@ const ProductListItem = ({ product, refetch }) => {
     const handleDelete = id => {
         const consent = window.confirm("Deleting the product will autometically delete cart and wishlist items from users, you may lose Track of data");
         if (consent) {
-            fetch(`https://working-title-server.vercel.app/products/delete/${id}`, {
+            fetch(`http://localhost:5000/products/delete/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())
@@ -31,7 +31,7 @@ const ProductListItem = ({ product, refetch }) => {
 
     const handleBoosted = (id, bool) => {
         console.log(bool);
-        fetch(`https://working-title-server.vercel.app/products/boosted?id=${id}&isBoosted=${bool}`, {
+        fetch(`http://localhost:5000/products/boosted?id=${id}&isBoosted=${bool}`, {
             method: "PUT"
         })
             .then(res => res.json())
@@ -53,7 +53,7 @@ const ProductListItem = ({ product, refetch }) => {
                 <h3 className='text-xs text-base-300'>{date ? date.slice(0, 10) : ``}</h3>
             </div>
             <div className='flex justify-center items-center'>
-                <h3>$ {price}</h3>
+                <h3>₹ {price}</h3>
             </div>
             <div className='flex flex-col justify-center items-center gap-2'>
                 <div className='flex justify-center items-center'>

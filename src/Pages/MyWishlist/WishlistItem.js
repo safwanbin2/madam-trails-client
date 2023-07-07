@@ -12,7 +12,7 @@ const WishlistItem = ({ item, refetch }) => {
     const handleRemoveFromWishlist = id => {
         const consent = window.confirm("Are you sure you want to remove item from wishlist?");
         if (consent) {
-            fetch(`https://working-title-server.vercel.app/wishlist/delete?id=${id}`, {
+            fetch(`http://localhost:5000/wishlist/delete?id=${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())
@@ -36,7 +36,7 @@ const WishlistItem = ({ item, refetch }) => {
                 <h3 className='text-xs md:text-base'>{productTitle} <span className='hidden md:block'>- {productSubTitle}</span></h3>
             </div>
             <div className='flex justify-center items-center'>
-                <h3>${productPrice}</h3>
+                <h3>₹ {productPrice}</h3>
             </div>
             <div className='flex flex-col gap-2'>
                 <div className='flex justify-center items-center'>
