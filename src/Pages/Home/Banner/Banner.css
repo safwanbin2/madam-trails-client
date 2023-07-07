@@ -1,0 +1,7 @@
+.banner {
+    min-height: calc(100vh - 68px);
+    /* background-image: url(../../../Assets/Banner/beauty.jpg);
+    background-size: cover;
+    background-repeat: no-repeat; */
+    /* background-color: #FFDDEE; */
+}

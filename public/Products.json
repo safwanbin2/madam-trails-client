@@ -1,0 +1,48 @@
+[
+    {
+        "title": "nail polish for women",
+        "subTitle": "For Shiny Nails - 200ml",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id voluptates debitis, distinctio maxime est fugiat atque hic optio aut rem excepturi natus explicabo ipsa consequuntur unde mollitia laboriosam nostrum sequi, magnam amet vitae deleniti nam, velit voluptatibus! Autem, id nesciunt. Aspernatur, doloremque commodi. Ipsam quas vitae, enim sunt quisquam illum, aliquam sed ut unde repellat cumque mollitia consequuntur quibusdam magnam!",
+        "image": "https://pyxis.nymag.com/v1/imgs/fae/76a/d45ee66ab34a50cc1adbd54096ea0f1cfd-3-15-Lede.1x.rsquare.w1400.jpg",
+        "category": "women",
+        "subCategory": "beauty",
+        "price": 200,
+        "isBoosted": false
+    },
+    {
+        "title": "half Pant",
+        "subTitle": "Compy men Half pant - 1pcs",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id voluptates debitis, distinctio maxime est fugiat atque hic optio aut rem excepturi natus explicabo ipsa consequuntur unde mollitia laboriosam nostrum sequi, magnam amet vitae deleniti nam, velit voluptatibus! Autem, id nesciunt. Aspernatur, doloremque commodi. Ipsam quas vitae, enim sunt quisquam illum, aliquam sed ut unde repellat cumque mollitia consequuntur quibusdam magnam!",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShYAsl-xt-uDyBKiD602nVfQI9n8-sY5MF9g",
+        "category": "men",
+        "subCategory": "clothe",
+        "price": 50
+    },
+    {
+        "title": "Full pant",
+        "subTitle": "Official full pant - 1pcs",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id voluptates debitis, distinctio maxime est fugiat atque hic optio aut rem excepturi natus explicabo ipsa consequuntur unde mollitia laboriosam nostrum sequi, magnam amet vitae deleniti nam, velit voluptatibus! Autem, id nesciunt. Aspernatur, doloremque commodi. Ipsam quas vitae, enim sunt quisquam illum, aliquam sed ut unde repellat cumque mollitia consequuntur quibusdam magnam!",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0AUvFqtl9d6FFaUuAr2aisGftIqQLSe2qEw",
+        "category": "men",
+        "subCategory": "clothe",
+        "price": 500
+    },
+    {
+        "title": "Hair Straightner",
+        "subTitle": "For Straighting hair - 150ml",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id voluptates debitis, distinctio maxime est fugiat atque hic optio aut rem excepturi natus explicabo ipsa consequuntur unde mollitia laboriosam nostrum sequi, magnam amet vitae deleniti nam, velit voluptatibus! Autem, id nesciunt. Aspernatur, doloremque commodi. Ipsam quas vitae, enim sunt quisquam illum, aliquam sed ut unde repellat cumque mollitia consequuntur quibusdam magnam!",
+        "image": "https://www.bdshop.com/pub/media/catalog/product/cache/eaf695a7c2edd83636a0242f7ce59484/p/h/philips_straightcare_hair_straightener_bhs375-00_in_bdshop_.jpg",
+        "category": "women",
+        "subCategory": "beauty",
+        "price": 2000
+    },
+    {
+        "title": "half sleeve genji",
+        "subTitle": "Summer compy tshirt conbo - 3pcs",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id voluptates debitis, distinctio maxime est fugiat atque hic optio aut rem excepturi natus explicabo ipsa consequuntur unde mollitia laboriosam nostrum sequi, magnam amet vitae deleniti nam, velit voluptatibus! Autem, id nesciunt. Aspernatur, doloremque commodi. Ipsam quas vitae, enim sunt quisquam illum, aliquam sed ut unde repellat cumque mollitia consequuntur quibusdam magnam!",
+        "image": "https://img.freepik.com/premium-photo/black-tshirts-with-copy-space_816702-240.jpg",
+        "category": "men",
+        "subCategory": "clothe",
+        "price": 600
+    }
+]
