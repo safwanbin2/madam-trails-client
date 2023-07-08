@@ -18,7 +18,7 @@ const ProductPage = () => {
     const { data: products, isLoading } = useQuery({
         queryKey: [searchText, "/products/find", categoryText],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products/find?q=${searchText}&category=${categoryText}`);
+            const res = await fetch(`https://working-title-server.vercel.app/products/find?q=${searchText}&category=${categoryText}`);
             const data = await res.json();
             return data;
         }

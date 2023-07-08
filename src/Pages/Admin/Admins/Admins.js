@@ -7,7 +7,7 @@ const Admins = () => {
     const { data: admins, isLoading } = useQuery({
         queryKey: ["role"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/all?role=admin`);
+            const res = await fetch(`https://working-title-server.vercel.app/users/all?role=admin`);
             const data = await res.json();
             return data;
         }

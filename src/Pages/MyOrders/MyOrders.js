@@ -9,7 +9,7 @@ const MyOrders = () => {
     const { data: orders, isLoading } = useQuery({
         queryKey: [user?.email, "orders", "myorders", "email"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/orders/myorders?email=${user?.email}`);
+            const res = await fetch(`https://working-title-server.vercel.app/orders/myorders?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -26,10 +26,15 @@ const MyOrders = () => {
                 {
                     orders.map(order => <div
                         key={order._id}
-                        className='p-6 shadow'
+                        className='p-6 shadow tracking-wider'
                     >
-                        <h2>Reciepent: {order.buyerName}</h2>
-                        <h2>Delivery Status: {order.status}</h2>
+                        <h2 className='text-xl my-1'>
+                            {
+                                order.products.map(product => <span>{product.productTitle},  </span>)
+                            }
+                        </h2>
+                        <h2 className='text-sm'>Delivery Status: <span className='text-green-500 text-lg'>{order.status}</span></h2>
+                        <h2 className='text-sm'>Total Price: <span className='text-green-500 text-lg'>₹ {order.summary.totalPrice}</span></h2>
                         <h2 className='text-sm'>Placed at: {order.createdAt.slice(0, 10)}</h2>
                         <div>
                             <span>View: </span>

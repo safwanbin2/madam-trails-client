@@ -52,7 +52,7 @@ const ProductDetail = () => {
             // "buyerId": ,
             "buyerEmail": user?.email
         }
-        fetch(`http://localhost:5000/wishlist`, {
+        fetch(`https://working-title-server.vercel.app/wishlist`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"

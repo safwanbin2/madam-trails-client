@@ -7,7 +7,7 @@ const Users = () => {
     const { data: users, isLoading } = useQuery({
         queryKey: ["role"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/all?role=user`);
+            const res = await fetch(`https://working-title-server.vercel.app/users/all?role=user`);
             const data = await res.json();
             return data;
         }
