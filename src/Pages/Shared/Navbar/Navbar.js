@@ -12,20 +12,20 @@ export default function Navbar() {
     const [wishlistCount, setWishlistCount] = useState(0);
     const [cartCount, setCartCount] = useState(0);
     const { user, countRefetch } = useContext(AuthContext);
-    const [isadmin, isAdminLoading] = useAdmin(user?.email)
+    const [isAdmin, isAdminLoading] = useAdmin(user?.email);
 
     // fetching for wishlist count
     useEffect(() => {
         fetch(`http://localhost:5000/wishlist/mycount?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setWishlistCount(data.count))
-    }, [user, countRefetch])
+    }, [user, countRefetch]);
     // fetching for cart count
     useEffect(() => {
         fetch(`http://localhost:5000/cart/mycount?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setCartCount(data.count))
-    }, [user, countRefetch])
+    }, [user, countRefetch]);
 
     const NavLinks = <>
         <li className='text-grey tracking-wider'>
@@ -37,7 +37,7 @@ export default function Navbar() {
         <li className="text-grey  tracking-wider">
             <Link to="/blog">Blog</Link>
         </li>
-        {isadmin ? < li className='text-grey tracking-wider font-bold' >
+        {isAdmin ? < li className='text-grey tracking-wider font-bold' >
             <Link className="flex items-center" to="/admin">
                 <GrUserAdmin className='' />
                 <span className="flex-1 ml-1 whitespace-nowrap">Dashboard</span>

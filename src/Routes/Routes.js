@@ -26,6 +26,7 @@ import Messages from "../Pages/Admin/Messages/Messages";
 import Post from "../Pages/Blog/Post";
 import MyOrders from "../Pages/MyOrders/MyOrders";
 import PayNow from "../Pages/MyCart/PayNow/PayNow";
+import MyOrder from "../Pages/MyOrders/MyOrder";
 
 export const router = createBrowserRouter([
     {
@@ -85,6 +86,11 @@ export const router = createBrowserRouter([
             {
                 path: "/myorders",
                 element: <PrivateRoute><MyOrders /></PrivateRoute>
+            },
+            {
+                path: "/myorders/:id",
+                element: <MyOrder />,
+                loader: ({ params }) => fetch(`http://localhost:5000/orders/myorders/${params.id}`)
             },
             {
                 path: "myprofile",

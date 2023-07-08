@@ -2,11 +2,15 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const PayNow = () => {
+    const { user, userDB } = useContext(AuthContext);
     const [isCOD, setIsCOD] = useState(false);
-    const { user } = useContext(AuthContext);
-    const { data: summary, isLoading, refetch } = useQuery({
+    const d = new Date();
+    const navigate = useNavigate();
+
+    const { data: summary, isLoading } = useQuery({
         queryKey: ["cart", "mycart", "summary", "email", user],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/cart/mycart/summary?email=${user?.email}`);
@@ -19,9 +23,43 @@ const PayNow = () => {
         if (!isCOD) {
             return toast.success("Select a payment option");
         }
-        
-    }
 
+        const order = {
+            products: [],
+            paymentMethod: "cod",
+            summary,
+            status: "pending",
+            createdAt: d,
+            tracking: [],
+            buyerEmail: userDB?.email,
+            buyerPhone: userDB?.phone,
+            buyerId: userDB?._Id,
+            buyerName: `${userDB?.firstName} ${userDB?.lastName}`,
+            buyerLocation: userDB?.location
+        }
+
+        fetch(`http://localhost:5000/orders/placeorder?email=${user?.email}`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged || data.insertedId) {
+                    navigate("/myorders")
+                    window.location.reload();
+                    return toast.success("Order Placed");
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                toast.error("Error occured");
+            })
+    }
+    console.log(summary);
     return (
         <div className='w-11/12 mx-auto my-6 flex flex-col-reverse md:grid gap-4 mycart' style={{ gridTemplateColumns: "2fr 1fr" }}>
             <div className=''>
