@@ -37,7 +37,7 @@ const AddProduct = () => {
                     isBoosted: false
                 }
                 // posting the new movie to the db
-                fetch(`https://working-title-server.vercel.app/products/add`, {
+                fetch(`http://localhost:5000/products/add`, {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"

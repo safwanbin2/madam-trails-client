@@ -40,7 +40,7 @@ const Register = () => {
     }
 
     return (
-        <div className='w-full min-h-screen bg-white pt-6'>
+        <div className='w-full min-h-[80vh] bg-white pt-6 flex justify-center items-center'>
             <div className='w-11/12 md:w-6/12 mx-auto p-4 border  bg-[#ecebeb]'>
                 <h2 className='text-xl font-semibold text-grey'>Create your Account!</h2>
                 <p>Already have account? <Link className='font-semibold tracking-wider text-grey' to="/login">Login</Link> here</p>

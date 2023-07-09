@@ -13,7 +13,7 @@ const CartItem = ({ cartItem, refetch, refetchSummary }) => {
     const handleRemoveFromCart = id => {
         const consent = window.confirm("Are you sure you want to remove item from Cart?");
         if (consent) {
-            fetch(`https://working-title-server.vercel.app/cart/delete?id=${id}`, {
+            fetch(`http://localhost:5000/cart/delete?id=${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())

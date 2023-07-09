@@ -2,16 +2,19 @@ import React from 'react';
 import { toast } from 'react-hot-toast';
 import { AiOutlineEye } from 'react-icons/ai';
 import { TiTickOutline } from 'react-icons/ti';
+import { BsArrowRightCircle } from 'react-icons/bs';
 import { TbTruckDelivery } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
+import { RiDeleteBin7Line } from 'react-icons/ri';
 
 const OrderItem = ({ order, refetch }) => {
     const { products, buyerName, buyerLocation, paymentMethod, summary, _id, status, createdAt } = order;
+    console.log(order);
 
     const handleUpdateStatus = (id, status) => {
         const consent = window.confirm("Are you sure you want to approve/update the order status?");
         if (consent) {
-            fetch(`https://working-title-server.vercel.app/orders/updatestatus?id=${id}&status=${status}`, {
+            fetch(`http://localhost:5000/orders/updatestatus?id=${id}&status=${status}`, {
                 method: "PUT"
             })
                 .then(res => res.json())
@@ -19,6 +22,27 @@ const OrderItem = ({ order, refetch }) => {
                     console.log(data);
                     if (data.acknowledged) {
                         toast.success("Order status updated");
+                        refetch();
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    toast.error("Error Occured");
+                })
+        }
+    }
+
+    const handleDeleteOrder = id => {
+        const consent = window.confirm("Deleting will erease the data from Database & will be lost forever");
+        if (consent) {
+            fetch(`http://localhost:5000/orders/delete?id=${id}`, {
+                method: "DELETE"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount) {
+                        toast.success("Deleted successfully");
                         refetch();
                     }
                 })
@@ -59,12 +83,22 @@ const OrderItem = ({ order, refetch }) => {
                 <div className='flex justify-center items-center'>
                     {
                         status === "pending" && <button onClick={() => handleUpdateStatus(_id, "picked")} title='Approve' className=' text-xl bg-primary p-1 rounded-[50%] text-white hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all duration-300'>
+                            <BsArrowRightCircle />
+                        </button>
+                    }
+                    {
+                        status === "picked" && <button onClick={() => handleUpdateStatus(_id, "ondelivery")} title='on delivery' className=' text-xl bg-primary p-1 rounded-[50%] text-white hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all duration-300'>
+                            <TbTruckDelivery />
+                        </button>
+                    }
+                    {
+                        status === "ondelivery" && <button onClick={() => handleUpdateStatus(_id, "delivered")} title='Delivered' className=' text-xl bg-primary p-1 rounded-[50%] text-white hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all duration-300'>
                             <TiTickOutline />
                         </button>
                     }
                     {
-                        status === "picked" && <button onClick={() => handleUpdateStatus(_id, "ondelivery")} title='Approve' className=' text-xl bg-primary p-1 rounded-[50%] text-white hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all duration-300'>
-                            <TbTruckDelivery />
+                        status === "delivered" && <button onClick={() => handleDeleteOrder(_id)} title='Delete Order from Database' className=' text-xl bg-primary p-1 rounded-[50%] text-white hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all duration-300'>
+                            <RiDeleteBin7Line />
                         </button>
                     }
                 </div>

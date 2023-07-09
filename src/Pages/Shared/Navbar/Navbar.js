@@ -16,13 +16,13 @@ export default function Navbar() {
 
     // fetching for wishlist count
     useEffect(() => {
-        fetch(`https://working-title-server.vercel.app/wishlist/mycount?email=${user?.email}`)
+        fetch(`http://localhost:5000/wishlist/mycount?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setWishlistCount(data.count))
     }, [user, countRefetch]);
     // fetching for cart count
     useEffect(() => {
-        fetch(`https://working-title-server.vercel.app/cart/mycount?email=${user?.email}`)
+        fetch(`http://localhost:5000/cart/mycount?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setCartCount(data.count))
     }, [user, countRefetch]);
