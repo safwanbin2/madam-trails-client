@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="footer py-10  text-base-content w-11/12 mx-auto">
                 <div>
                     <Link className='text-primary text-xl uppercase font-bold tracking-wider' to="/">
-                        <h2 className="">Working-Title</h2>
+                        <h2 className="">MadamTrails</h2>
                     </Link>
                     <p>XYZ Industries Ltd.<br />Providing reliable products since 2023</p>
                 </div>

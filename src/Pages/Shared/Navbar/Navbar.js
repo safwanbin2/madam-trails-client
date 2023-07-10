@@ -82,7 +82,7 @@ export default function Navbar() {
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
                         <Link className='text-primary text-2xl uppercase tracking-wider' to="/">
-                            <h2 className="">Working-Title</h2>
+                            <h2 className="">MadamTrails</h2>
                         </Link>
                         <div className="md:hidden">
                             <button

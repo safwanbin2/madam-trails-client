@@ -98,7 +98,7 @@ const AdminLayout = () => {
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between px-4">
                         <Link to='/' className='text-primary text-2xl uppercase tracking-wider'>
-                            <h2 className="">Working-Title</h2>
+                            <h2 className="">MadamTrails</h2>
                         </Link>
                         <div className="flex md:hidden items-center justify-start">
                             <button onClick={() => handleToggle()} data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" className="p-2 text-gray-700 rounded-md outline-none ">

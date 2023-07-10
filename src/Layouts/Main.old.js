@@ -55,7 +55,7 @@ const AdminLayout = () => {
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between px-4">
                         <Link to='/' className='hidden md:flex justify-center items-center tracking-wider text-2xl font-semibold'>
-                            <h2>Working Title</h2>
+                            <h2>MadamTrails</h2>
                         </Link>
                         <div className="flex items-center justify-start">
                             <button onClick={() => handleToggle()} data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 ">
