@@ -23,7 +23,7 @@ const ContactUs = () => {
             isRead: false
         }
         console.log(newMessage);
-        fetch(`http://localhost:5000/messages/newmessage`, {
+        fetch(`https://working-title-server.vercel.app/messages/newmessage`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"

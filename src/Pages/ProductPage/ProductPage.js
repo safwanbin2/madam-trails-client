@@ -9,7 +9,7 @@ const ProductPage = () => {
 
     const [searchText, setSearchText] = useState("");
     const [categoryText, setCategoryText] = useState("");
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const handleFormSubmit = data => {
         setCategoryText("");
         setSearchText(data.search);
@@ -18,7 +18,7 @@ const ProductPage = () => {
     const { data: products, isLoading } = useQuery({
         queryKey: [searchText, "/products/find", categoryText],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products/find?q=${searchText}&category=${categoryText}`);
+            const res = await fetch(`https://working-title-server.vercel.app/products/find?q=${searchText}&category=${categoryText}`);
             const data = await res.json();
             return data;
         }
@@ -28,18 +28,18 @@ const ProductPage = () => {
     return (
         <div>
             <div className='bg-[#ecebeb]'>
-                <div className='w-11/12 mx-auto py-2 md:py-4 flex flex-col md:flex-row gap-2 md:gap-0'>
-                    <div className='w-full md:w-auto flex'>
-                        <button onClick={() => setCategoryText("men")} className='px-10 py-1 bg-primary text-white me-1 md:me-4 rounded-3xl hover:shadow-lg focus:bg-white focus:text-primary w-full md:w-auto'>Men</button>
-                        <button onClick={() => setCategoryText("women")} className='px-10 py-1 bg-primary text-white ms-1 md:ms-0 md:me-4 rounded-3xl hover:shadow-lg focus:bg-white focus:text-primary w-full md:w-auto'>Women</button>
+                <div className='w-11/12 mx-auto py-2 md:py-4 flex flex-col md:flex-row gap-2'>
+                    <div className='w-full md:w-auto flex gap-2'>
+                        <button onClick={() => setCategoryText("men")} className={`${categoryText === "men" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent"} px-4 md:px-10 py-1 text-sm md:text-base rounded-3xl hover:shadow-lg border  transition-all duration-300 w-full`}>Men</button>
+                        <button onClick={() => setCategoryText("women")} className={`${categoryText === "women" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent "} px-4 md:px-10 py-1 text-sm md:text-base rounded-3xl hover:shadow-lg border transition-all duration-300 w-full`}>Women</button>
                     </div>
-                    <form onSubmit={handleSubmit(handleFormSubmit)} className='flex w-full'>
+                    <form onSubmit={handleSubmit(handleFormSubmit)} className='flex w-full gap-2'>
                         <input {
                             ...register('search', {
                                 required: "Search text is required"
                             })
-                        } className='me-1 md:me-4 outline-none bg-white rounded-full px-3 py-1 w-full' placeholder='Search for product' />
-                        <button className='px-10 py-1 bg-primary text-white ms-1 md:ms-0 md:me-4 rounded-3xl hover:shadow-lg' type='submit'>Search</button>
+                        } className=' outline-none bg-white rounded-full px-3 py-1 w-full' placeholder='Search for product' />
+                        <button className='px-10 py-1 bg-primary text-white rounded-3xl hover:shadow-lg' type='submit'>Search</button>
                     </form>
                 </div>
             </div>

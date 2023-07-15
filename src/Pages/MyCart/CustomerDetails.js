@@ -6,7 +6,7 @@ const CustomerDetails = () => {
     const { userDB, isUserDBLoading } = useContext(AuthContext);
 
     return (
-        <div className={`p-6 shadow mb-4 border border-transparent ${!userDB?.location && 'border-error'}`}>
+        <div className={`p-6 shadow mb-4 border ${(!userDB?.phone || !userDB?.location) ? "border-red-500" : "border-transparent"}`}>
             {
                 !userDB?._id && isUserDBLoading ? <h2>Loading...</h2>
                     : <div className='relative'>

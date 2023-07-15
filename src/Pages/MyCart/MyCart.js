@@ -11,7 +11,7 @@ const MyCart = () => {
     const { data: cartItems, isLoading, refetch } = useQuery({
         queryKey: ["cart", "mycart", "email", user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/cart/mycart?email=${user?.email}`);
+            const res = await fetch(`https://working-title-server.vercel.app/cart/mycart?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -20,12 +20,12 @@ const MyCart = () => {
     const { data: summary, isLoading: isSummaryLoading, refetch: refetchSummary } = useQuery({
         queryKey: ["cart", "mycart", "summary", "email", user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/cart/mycart/summary?email=${user?.email}`);
+            const res = await fetch(`https://working-title-server.vercel.app/cart/mycart/summary?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
     });
-
+    
     return (
         <div className='w-11/12 mx-auto my-6 flex flex-col-reverse md:grid gap-4 mycart' style={{ gridTemplateColumns: "2fr 1fr" }}>
             <div>
@@ -69,12 +69,12 @@ const MyCart = () => {
                                     <h4 className='text-2xl text-primary'>₹ {summary?.totalPrice}</h4>
                                 </div>
                                 {
-                                    (!userDB?.phone || !userDB?.location) ?
+                                    (!userDB?.phone || !userDB?.location || !cartItems?.length) ?
                                         <>
                                             <button disabled className='px-4 md:px-10 py-2 text-base-300 border rounded-3xl hover:shadow-lg flex justify-center items-center'>
                                                 <p>Proceed to Checkout</p>
                                             </button>
-                                            <p className='text-error text-sm'>*Edit phone & location</p>
+                                            <p className='text-error text-sm'> {!userDB?.phone && "*edit phone ,"} {!userDB?.location && " *edit location ,"} {!cartItems?.length && "add items to cart"}</p>
                                         </>
                                         : <Link to="/mycart/paynow"
                                             className='px-4 md:px-10 py-2 bg-primary text-white rounded-3xl hover:shadow-lg flex justify-center items-center'>

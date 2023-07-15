@@ -6,26 +6,27 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { GrUserAdmin } from 'react-icons/gr';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import useAdmin from '../../../Hooks/useAdmin';
+import logo from '../../../Assets/photo/profile.jpg';
 
 export default function Navbar() {
     const [navbar, setNavbar] = useState(false);
     const [wishlistCount, setWishlistCount] = useState(0);
     const [cartCount, setCartCount] = useState(0);
-    const { user, countRefetch } = useContext(AuthContext);
+    const { user, countRefetch, userDB } = useContext(AuthContext);
     const [isAdmin, isAdminLoading] = useAdmin(user?.email);
 
     // fetching for wishlist count
     useEffect(() => {
-        fetch(`http://localhost:5000/wishlist/mycount?email=${user?.email}`)
+        fetch(`https://working-title-server.vercel.app/wishlist/mycount?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setWishlistCount(data.count))
-    }, [user, countRefetch]);
+    }, [user, countRefetch, userDB]);
     // fetching for cart count
     useEffect(() => {
-        fetch(`http://localhost:5000/cart/mycount?email=${user?.email}`)
+        fetch(`https://working-title-server.vercel.app/cart/mycount?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setCartCount(data.count))
-    }, [user, countRefetch]);
+    }, [user, countRefetch, userDB]);
 
     const NavLinks = <>
         <li className='text-grey tracking-wider'>
@@ -78,11 +79,12 @@ export default function Navbar() {
     return (
         // bg-[#F8F8F8]
         <nav className="w-full bg-base-100 shadow">
-            <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+            <div className="justify-between  w-11/12 mx-auto md:items-center md:flex">
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
                         <Link className='text-primary text-2xl uppercase tracking-wider' to="/">
                             <h2 className="">MadamTrails</h2>
+                            {/* <img className='h-[32px]' src={logo} alt="" /> */}
                         </Link>
                         <div className="md:hidden">
                             <button

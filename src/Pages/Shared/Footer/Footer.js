@@ -22,7 +22,7 @@ const Footer = () => {
                     <span className="footer-title">Company</span>
                     <Link to="/aboutus" className="link link-hover">About us</Link>
                     <Link to="/contactus" className="link link-hover">Contact</Link>
-                    <Link className="link link-hover">Jobs</Link>
+                    <Link to="/contactus" className="link link-hover">Jobs</Link>
                 </div>
                 <div>
                     <span className="footer-title">Legal</span>

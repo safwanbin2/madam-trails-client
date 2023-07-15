@@ -8,7 +8,7 @@ import useAdmin from '../../Hooks/useAdmin';
 
 const ProductDetail = () => {
     const product = useLoaderData();
-    const { _id, title, subTitle, category, subCategory, image, description, price } = product;
+    const { _id, title, subTitle, category, subCategory, image, description, price, brand } = product;
     // context auth
     const { user, countRefetch, setCountRefetch } = useContext(AuthContext);
     // getting to know if user is admin or not
@@ -52,7 +52,7 @@ const ProductDetail = () => {
             // "buyerId": ,
             "buyerEmail": user?.email
         }
-        fetch(`http://localhost:5000/wishlist`, {
+        fetch(`https://working-title-server.vercel.app/wishlist`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -108,7 +108,7 @@ const ProductDetail = () => {
                     <ul className='ms-6 mb-6'>
                         <li className='text-grey list-disc text-sm'>Category - {category}</li>
                         <li className='text-grey list-disc text-sm'>Product type - {subCategory}</li>
-                        <li className='text-grey list-disc text-sm'>Brand - Champion</li>
+                        <li className='text-grey list-disc text-sm'>Brand - {brand}</li>
                     </ul>
                 </div>
             </div>
