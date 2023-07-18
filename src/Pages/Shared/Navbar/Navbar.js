@@ -6,7 +6,6 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { GrUserAdmin } from 'react-icons/gr';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import useAdmin from '../../../Hooks/useAdmin';
-import logo from '../../../Assets/photo/profile.jpg';
 
 export default function Navbar() {
     const [navbar, setNavbar] = useState(false);

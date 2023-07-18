@@ -43,7 +43,7 @@ const PayNow = () => {
             buyerName: `${userDB?.firstName} ${userDB?.lastName}`,
             buyerLocation: userDB?.location
         }
-        
+
         fetch(`https://working-title-server.vercel.app/orders/placeorder?email=${user?.email}`, {
             method: "POST",
             headers: {
@@ -56,6 +56,7 @@ const PayNow = () => {
                 console.log(data);
                 if (data.acknowledged || data.insertedId) {
                     navigate("/myorders")
+                    window.location.reload();
                     return toast.success("Order Placed");
                 }
             })
