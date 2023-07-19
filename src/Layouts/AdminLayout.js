@@ -8,6 +8,7 @@ import { GoSignOut } from 'react-icons/go';
 import { SiGooglemessages } from 'react-icons/si';
 import { FaBlog } from 'react-icons/fa';
 import { MdCreateNewFolder, MdLocalMovies } from 'react-icons/md';
+import m from '../../src/Assets/logo/m.png';
 
 const AdminLayout = () => {
     const { logOut } = useContext(AuthContext);
@@ -98,7 +99,8 @@ const AdminLayout = () => {
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between px-4">
                         <Link to='/' className='text-primary text-2xl uppercase tracking-wider'>
-                            <h2 className="">MadamTrails</h2>
+                            {/* <h2 className="">MadamTrails</h2> */}
+                            <img className='h-[32px]' src={m} alt="" />
                         </Link>
                         <div className="flex md:hidden items-center justify-start">
                             <button onClick={() => handleToggle()} data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" className="p-2 text-gray-700 rounded-md outline-none ">

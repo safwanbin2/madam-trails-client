@@ -58,7 +58,7 @@ const ProductListItem = ({ product, refetch }) => {
             <div className='flex flex-col justify-center items-center gap-2'>
                 <div className='flex justify-center items-center'>
                     {
-                        isBoosted ? <button onClick={() => handleBoosted(_id, false)} className={`bg-accent text-xl  p-1 rounded-[50%] text-white hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all duration-300`} ><BiSolidHot /></button>
+                        isBoosted ? <button onClick={() => handleBoosted(_id, false)} className={`bg-secondary text-xl  p-1 rounded-[50%] text-white hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all duration-300`} ><BiSolidHot /></button>
                             : <button onClick={() => handleBoosted(_id, true)} className={`bg-primary text-xl  p-1 rounded-[50%] text-white hover:bg-white hover:border-primary hover:text-primary border border-transparent transition-all duration-300`} ><BiSolidHot /></button>
                     }
                 </div>

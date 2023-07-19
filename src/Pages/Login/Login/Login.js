@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast';
 import LoadingPage from '../../../Components/LoadingPage';
 
 const Login = () => {
-    const { isLoading, logInWithEmail } = useContext(AuthContext);
+    const { isLoading, setIsLoading, logInWithEmail } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -17,12 +17,16 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success(`Successfully logged in as ${user?.displayName}`);
+                toast.success(`Logged in`);
                 // navigate(from, { replace: true });
                 navigate("/");
             })
             .catch(err => {
                 console.error(err);
+                setIsLoading(false)
+                if (err.message) {
+                    return toast.error(err.message);
+                }
                 toast.error("Failed to log In, Try again")
             });
     }

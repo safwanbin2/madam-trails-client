@@ -23,10 +23,17 @@ const Register = () => {
                     setIsLoading(false);
                     navigate("/");
                 }
-                toast.success(`Logged in as ${User?.displayName}`);
+                toast.success(`Account created`);
                 console.log(user);
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err)
+                setIsLoading(false);
+                if(err.message){
+                    return toast.error(err.message)
+                }
+                toast.error("Error creating account")
+            });
     }
     console.log(User);
     const updateUserData = (name) => {

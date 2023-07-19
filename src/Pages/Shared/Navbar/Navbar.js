@@ -6,6 +6,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { GrUserAdmin } from 'react-icons/gr';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import useAdmin from '../../../Hooks/useAdmin';
+import m from '../../../Assets/logo/m.png';
 
 export default function Navbar() {
     const [navbar, setNavbar] = useState(false);
@@ -29,11 +30,11 @@ export default function Navbar() {
 
     const NavLinks = <>
         <li className='text-grey tracking-wider'>
-            <Link to="/productspage">Find products</Link>
+            <Link to="/productspage">Find-products</Link>
         </li>
-        <li className="text-grey  tracking-wider">
+        {/* <li className="text-grey  tracking-wider">
             <Link to="/aboutus">About</Link>
-        </li>
+        </li> */}
         <li className="text-grey  tracking-wider">
             <Link to="/blog">Blog</Link>
         </li>
@@ -48,7 +49,7 @@ export default function Navbar() {
                     <Link to="/contactus">Contact</Link>
                 </li>
                 <li className="text-grey  tracking-wider">
-                    <Link to="/myorders">Orders</Link>
+                    <Link to="/myorders">my-Orders</Link>
                 </li>
                 <li className="text-grey  dropdown dropdown-hover  me-4">
                     <Link to="/myprofile">
@@ -82,8 +83,8 @@ export default function Navbar() {
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
                         <Link className='text-primary text-2xl uppercase tracking-wider' to="/">
-                            <h2 className="">MadamTrails</h2>
-                            {/* <img className='h-[32px]' src={logo} alt="" /> */}
+                            {/* <h2 className="">MadamTrails</h2> */}
+                            <img className='h-[32px]' src={m} alt="" />
                         </Link>
                         <div className="md:hidden">
                             <button
