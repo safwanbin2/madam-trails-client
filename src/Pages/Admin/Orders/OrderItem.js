@@ -14,7 +14,7 @@ const OrderItem = ({ order, refetch }) => {
     const handleUpdateStatus = (id, status) => {
         const consent = window.confirm("Are you sure you want to approve/update the order status?");
         if (consent) {
-            fetch(`https://working-title-server.vercel.app/orders/updatestatus?id=${id}&status=${status}`, {
+            fetch(`http://localhost:5000/orders/updatestatus?id=${id}&status=${status}`, {
                 method: "PUT"
             })
                 .then(res => res.json())
@@ -35,7 +35,7 @@ const OrderItem = ({ order, refetch }) => {
     const handleDeleteOrder = id => {
         const consent = window.confirm("Deleting will erease the data from Database & will be lost forever");
         if (consent) {
-            fetch(`https://working-title-server.vercel.app/orders/delete?id=${id}`, {
+            fetch(`http://localhost:5000/orders/delete?id=${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())

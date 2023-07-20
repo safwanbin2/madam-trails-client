@@ -7,7 +7,7 @@ const BoostedProducts = () => {
     const { data: products, isLoading } = useQuery({
         queryKey: ["limit", "boosted", "products"],
         queryFn: async () => {
-            const res = await fetch(`https://working-title-server.vercel.app/products/boosted?limit=5`);
+            const res = await fetch(`http://localhost:5000/products/boosted?limit=5`);
             const data = await res.json();
             return data;
         }
