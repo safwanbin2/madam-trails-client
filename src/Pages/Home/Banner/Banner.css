@@ -1,7 +1,14 @@
 .banner {
-    min-height: calc(100vh - 68px);
+    /* min-height: calc(100vh - 68px); */
+    height: calc(100vh - 72px);
     /* background-image: url(../../../Assets/Banner/beauty.jpg);
     background-size: cover;
     background-repeat: no-repeat; */
     /* background-color: #FFDDEE; */
+}
+
+@media screen and (max-width: 768px) {
+    .banner{
+        height: calc(100vh - 64px);
+    }
 }

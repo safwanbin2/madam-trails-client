@@ -4,49 +4,44 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import LoadingPage from '../../Components/LoadingPage';
 import ProductCard from '../../Components/ProductCard';
+import { useLoaderData } from 'react-router-dom';
 
 const ProductPage = () => {
-
-    const [searchText, setSearchText] = useState("");
+    const searchText = useLoaderData();
+    // const [searchText, setSearchText] = useState("");
     const [categoryText, setCategoryText] = useState("");
-    const { register, handleSubmit } = useForm();
-    const handleFormSubmit = data => {
-        setCategoryText("");
-        setSearchText(data.search);
-    }
-
+    // const { register, handleSubmit } = useForm();
+    // const handleFormSubmit = data => {
+    //     setCategoryText("");
+    //     setSearchText(data.search);
+    // }
     const { data: products, isLoading } = useQuery({
         queryKey: [searchText, "/products/find", categoryText],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products/find?q=${searchText}&category=${categoryText}`);
+            const res = await fetch(`https://working-title-server.vercel.app/products/find?q=${searchText ? searchText : ""}&category=${categoryText}`);
             const data = await res.json();
             return data;
         }
     })
 
-    console.log(products);
     return (
         <div>
-            <div className='bg-[#ecebeb]'>
+            <div className=''>
                 <div className='w-11/12 mx-auto py-2 md:py-4 flex flex-col md:flex-row gap-2'>
-                    <div className='w-full md:w-auto flex gap-2'>
-                        <button onClick={() => setCategoryText("men")} className={`${categoryText === "men" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent"} px-4 md:px-10 py-1 text-sm md:text-base rounded-3xl hover:shadow-lg border  transition-all duration-300 w-full`}>Men</button>
-                        <button onClick={() => setCategoryText("women")} className={`${categoryText === "women" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent "} px-4 md:px-10 py-1 text-sm md:text-base rounded-3xl hover:shadow-lg border transition-all duration-300 w-full`}>Women</button>
+                    <div className=''>
+                        <h2 className='text-xl mb-3 text-grey'>Categories: </h2>
+                        <div className='w-full md:w-auto flex gap-2'>
+                            <button onClick={() => setCategoryText("")} className={`${categoryText === "" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent"} px-4 md:px-10 py-1 text-sm md:text-base rounded-3xl hover:shadow-lg border  transition-all duration-300 w-full`}>All</button>
+                            <button onClick={() => setCategoryText("men")} className={`${categoryText === "men" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent"} px-4 md:px-10 py-1 text-sm md:text-base rounded-3xl hover:shadow-lg border  transition-all duration-300 w-full`}>Men</button>
+                            <button onClick={() => setCategoryText("women")} className={`${categoryText === "women" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent "} px-4 md:px-10 py-1 text-sm md:text-base rounded-3xl hover:shadow-lg border transition-all duration-300 w-full`}>Women</button>
+                        </div>
                     </div>
-                    <form onSubmit={handleSubmit(handleFormSubmit)} className='flex w-full gap-2'>
-                        <input {
-                            ...register('search', {
-                                required: "Search text is required"
-                            })
-                        } className=' outline-none bg-white rounded-full px-3 py-1 w-full' placeholder='Search for product' />
-                        <button className='px-10 py-1 bg-primary text-white rounded-3xl hover:shadow-lg' type='submit'>Search</button>
-                    </form>
                 </div>
             </div>
             <div className='w-11/12 mx-auto my-6'>
                 {
                     isLoading ? <LoadingPage />
-                        : (products.length === 0 ? <div className='text-xl font-semibold text-grey'>No Products Available</div> : <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
+                        : (products.length === 0 ? <div className='text-xl font-semibold text-grey'>No Products Available</div> : <div className='grid grid-cols-2 md:grid-cols-7 gap-2'>
                             {
                                 products.map(product => <ProductCard
                                     key={product._id}

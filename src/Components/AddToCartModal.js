@@ -30,7 +30,7 @@ const AddToCartModal = ({ product, setProduct, quantity }) => {
         if (!user) {
             return toast.error("Login to your account first")
         }
-        fetch(`http://localhost:5000/cart/additem`, {
+        fetch(`https://working-title-server.vercel.app/cart/additem`, {
             method: "POST",
             headers: {
                 "Content-type": "Application/json"

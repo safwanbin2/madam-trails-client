@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
@@ -8,6 +8,7 @@ import LoadingPage from '../../../Components/LoadingPage';
 
 const Register = () => {
     const { createUser, user: User, isLoading, setIsLoading, update } = useContext(AuthContext);
+    const [consent, setConsent] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const date = new Date();
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Register = () => {
             .catch(err => {
                 console.error(err)
                 setIsLoading(false);
-                if(err.message){
+                if (err.message) {
                     return toast.error(err.message)
                 }
                 toast.error("Error creating account")
@@ -48,10 +49,10 @@ const Register = () => {
 
     return (
         <div className='w-full min-h-[80vh] bg-white pt-6 flex justify-center items-center'>
-            <div className='w-11/12 md:w-6/12 mx-auto p-4 border  bg-[#ecebeb]'>
+            <div className='w-11/12 md:w-6/12 mx-auto p-4 border  bg-info'>
                 <h2 className='text-xl font-semibold text-grey'>Create your Account!</h2>
                 <p>Already have account? <Link className='font-semibold tracking-wider text-grey' to="/login">Login</Link> here</p>
-                <form onSubmit={handleSubmit(handleRegister)}>
+                <form onSubmit={handleSubmit(handleRegister)} className='mt-2'>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mb-2'>
                         <div className="form-control">
                             <label className="label ps-0">
@@ -127,7 +128,7 @@ const Register = () => {
                             } type="password" placeholder="password" className="bg-white focus:outline-none rounded p-2   w-full" />
                         </div> */}
                     </div>
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mb-4'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mb-2'>
                         <div className="form-control">
                             <label className="label ps-0">
                                 <span className="">Email</span>
@@ -155,9 +156,24 @@ const Register = () => {
                             </label>}
                         </div>
                     </div>
-                    <div className='flex justify-center items-center'>
-                        <button className='px-10 py-2 bg-primary text-white me-4 rounded-3xl hover:shadow-lg' type='submit'>Create Account</button>
+                    <div className="form-control mb-4">
+                        <label className="cursor-pointer px-0 label justify-start gap-2">
+                            <input onClick={() => setConsent(!consent)} type="checkbox" className="checkbox checkbox-success h-5 w-5" />
+                            <span className="label-text text-base">
+                                I agree to Madamtrails's <Link className='text-blue-500' to="/termsofuse">Terms of Use</Link> , <Link className='text-blue-500' to="/privacypolicy">Privacy Policy</Link>, and <Link className='text-blue-500' to="/cookiepolicy">Cookie Policy</Link>
+                            </span>
+                        </label>
                     </div>
+                    {
+                        consent ?
+                            <div className='flex justify-center items-center'>
+                                <button className='px-10 py-2 bg-primary text-white me-4 rounded-3xl hover:shadow-lg' type='submit'>Create Account</button>
+                            </div>
+                            :
+                            <div className='flex justify-center items-center'>
+                                <button disabled className='px-10 py-2 text-white bg-base-300 me-4 rounded-3xl hover:shadow-lg'>Create Account</button>
+                            </div>
+                    }
                 </form>
             </div>
         </div>

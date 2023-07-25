@@ -15,7 +15,7 @@ const PayNow = () => {
     const { data: summary, isLoading } = useQuery({
         queryKey: ["cart", "mycart", "summary", "email", user],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/cart/mycart/summary?email=${user?.email}`);
+            const res = await fetch(`https://working-title-server.vercel.app/cart/mycart/summary?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -44,7 +44,7 @@ const PayNow = () => {
             buyerLocation: userDB?.location
         }
 
-        fetch(`http://localhost:5000/orders/placeorder?email=${user?.email}`, {
+        fetch(`https://working-title-server.vercel.app/orders/placeorder?email=${user?.email}`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -84,7 +84,7 @@ const PayNow = () => {
                 }
             </div>
             <div>
-                <div className='bg-base-100 shadow p-6 flex flex-col gap-5'>
+                <div className='bg-info shadow p-6 flex flex-col gap-5'>
                     <h2 className='text-xl text-grey'>Order Summary: </h2>
                     {
                         isLoading ? <h2>Loading...</h2>

@@ -17,7 +17,7 @@ module.exports = {
           "base-100": "#F8F8F8",
           accent: '#ff0000',       // Bright yellow
           "third": '#333333',         // Dark gray
-          "info": "#3abff8",
+          "info": "#FFD9D9",
           "success": "#36d399",
           "warning": "#fbbd23",
           "error": "#f87272",

@@ -7,7 +7,8 @@ import Banner from './Banner/Banner';
 const Home = () => {
   const [category, setCategory] = useState("men");
   return (
-    <div>
+    <div className=''>
+      {/* mt-[52px] md:mt-[72px] */}
       <Banner />
       <div className='w-11/12 mx-auto my-6'>
         <BoostedProducts />

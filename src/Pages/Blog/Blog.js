@@ -8,14 +8,14 @@ const Blog = () => {
   const { data: posts, isLoading } = useQuery({
     queryKey: ["blogs", "category", categoryText],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/blogs?category=${categoryText}`);
+      const res = await fetch(`https://working-title-server.vercel.app/blogs?category=${categoryText}`);
       const data = await res.json();
       return data;
     }
   });
 
   return (
-    <div className='w-11/12 mx-auto'>
+    <div className='w-11/12 mx-auto '>
       <div className='my-6 gap-2 flex flex-col md:flex-row md:justify-between md:items-center'>
         <h2 className='text-xl text-grey'>Blogs: {categoryText}</h2>
         {/* <div className="form-control flex-row">

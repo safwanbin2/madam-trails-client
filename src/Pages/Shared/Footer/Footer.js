@@ -13,22 +13,22 @@ const Footer = () => {
                 </div>
                 <div>
                     <span className="footer-title">Services</span>
-                    <a className="link link-hover">Branding</a>
-                    <a className="link link-hover">Design</a>
-                    <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
+                    <Link className="link link-hover">Branding</Link>
+                    <Link className="link link-hover">Design</Link>
+                    <Link className="link link-hover">Marketing</Link>
+                    <Link className="link link-hover">Advertisement</Link>
                 </div>
                 <div>
                     <span className="footer-title">Company</span>
                     <Link to="/aboutus" className="link link-hover">About us</Link>
                     <Link to="/contactus" className="link link-hover">Contact</Link>
-                    <Link to="/contactus" className="link link-hover">Jobs</Link>
+                    <Link to="/jobs" className="link link-hover">Jobs</Link>
                 </div>
                 <div>
                     <span className="footer-title">Legal</span>
-                    <a className="link link-hover">Terms of use</a>
-                    <a className="link link-hover">Privacy policy</a>
-                    <a className="link link-hover">Cookie policy</a>
+                    <Link to="/termsofuse" className="link link-hover">Terms of use</Link>
+                    <Link to="/privacypolicy" className="link link-hover">Privacy policy</Link>
+                    <Link to="/cookiepolicy" className="link link-hover">Cookie policy</Link>
                 </div>
             </div>
         </footer>

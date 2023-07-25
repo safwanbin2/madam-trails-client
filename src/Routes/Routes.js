@@ -27,6 +27,9 @@ import Post from "../Pages/Blog/Post";
 import MyOrders from "../Pages/MyOrders/MyOrders";
 import PayNow from "../Pages/MyCart/PayNow/PayNow";
 import MyOrder from "../Pages/MyOrders/MyOrder";
+import TermsOfUse from "../Pages/Legal/TermsOfUse";
+import PrivacyPolicy from "../Pages/Legal/PrivacyPolicy";
+import CookiePolicy from "../Pages/Legal/CookiePolicy";
 
 export const router = createBrowserRouter([
     {
@@ -45,12 +48,18 @@ export const router = createBrowserRouter([
             // getting to products page query and category filter
             {
                 path: "/productspage",
-                element: <ProductPage />
+                element: <ProductPage />,
+            },
+            {
+                path: "/productspage/:searchText",
+                element: <ProductPage />,
+                // loader: ({ params }) => fetch(`https://working-title-server.vercel.app/products/find?q=${params.searchText}&category=""`)
+                loader: ({ params }) => (params.searchText)
             },
             // products related routes and navigations
             {
                 path: "/product/:id",
-                loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+                loader: ({ params }) => fetch(`https://working-title-server.vercel.app/product/${params.id}`),
                 element: <ProductDetail />
             },
             // nav items navigations
@@ -69,7 +78,7 @@ export const router = createBrowserRouter([
             {
                 path: "/blog/:id",
                 element: <Post />,
-                loader: ({ params }) => fetch(`http://localhost:5000/blogs/blog/${params.id}`)
+                loader: ({ params }) => fetch(`https://working-title-server.vercel.app/blogs/blog/${params.id}`)
             },
             {
                 path: "/mycart",
@@ -90,7 +99,7 @@ export const router = createBrowserRouter([
             {
                 path: "/myorders/:id",
                 element: <MyOrder />,
-                loader: ({ params }) => fetch(`http://localhost:5000/orders/myorders/${params.id}`)
+                loader: ({ params }) => fetch(`https://working-title-server.vercel.app/orders/myorders/${params.id}`)
             },
             {
                 path: "myprofile",
@@ -104,6 +113,20 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />
+            },
+            // !footer links
+            // legals
+            {
+                path: "/termsofuse",
+                element: <TermsOfUse />
+            },
+            {
+                path: "/privacypolicy",
+                element: <PrivacyPolicy />
+            },
+            {
+                path: "/cookiepolicy",
+                element: <CookiePolicy />
             }
         ]
     },

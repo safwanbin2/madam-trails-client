@@ -9,7 +9,7 @@ const Post = () => {
     const { data: categoryPosts, isLoading } = useQuery({
         queryKey: [category, "category", "blogs"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/blogs?category=${category}`);
+            const res = await fetch(`https://working-title-server.vercel.app/blogs?category=${category}`);
             const data = await res.json();
             return data;
         }
@@ -24,13 +24,13 @@ const Post = () => {
                     <h4 className='text-xs text-gray-500'>{date.slice(0, 10)}</h4>
                     <p className='mt-6'>{body}</p>
                 </div>
-                <div className='flex flex-col gap-6'>
+                <div className='flex flex-col gap-2'>
                     <h2 className='text-xl tracking-wider'>Similiar Posts: </h2>
                     {
                         isLoading ? <h2>Loading...</h2>
                             : categoryPosts.map(categoryPost => <Link
                                 key={categoryPost._id}
-                                className='shadow p-4 grid gap-2' 
+                                className='shadow p-4 grid gap-2 bg-info' 
                                 style={{gridTemplateColumns: "1fr 2fr"}}
                                 to={`/blog/${categoryPost._id}`}
                             >
