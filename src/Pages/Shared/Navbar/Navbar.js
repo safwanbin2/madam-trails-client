@@ -7,7 +7,6 @@ import { GrUserAdmin } from 'react-icons/gr';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import useAdmin from '../../../Hooks/useAdmin';
 import m from '../../../Assets/logo/m.png';
-import searchBtn from '../../../Assets/icons/search.png';
 import { BiSearchAlt2 } from 'react-icons/bi';
 
 export default function Navbar() {
@@ -20,7 +19,7 @@ export default function Navbar() {
     const navigate = useNavigate();
 
     const handleSearchEnter = () => {
-        if(searchText){
+        if (searchText) {
             return navigate(`/productspage/${searchText}`)
         }
         navigate(`/productspage`)
@@ -38,28 +37,55 @@ export default function Navbar() {
             .then(res => res.json())
             .then(data => setCartCount(data.count))
     }, [user, countRefetch, userDB]);
-    console.log(searchText)
+
+    const ProfileDropdownMenu = <div className='p-3'>
+        <h2>Welcome!</h2>
+        {
+            user ?
+                <div>
+                    <p className='text-xl '>{user?.displayName}</p>
+                    <Link className='text-primary' to="/myprofile">Profile</Link>
+                </div>
+                :
+                <div className='mt-2'>
+                    <Link to="/login" className={`hover:bg-white hover:border-primary hover:text-primary bg-primary text-white border-transparent px-2 py-1 text-sm md:text-base hover:shadow-lg border  transition-all duration-300 w-full`}>Login / Register</Link>
+                </div>
+        }
+        <div className='divider my-2'></div>
+        <div className='grid grid-cols-1 gap-1'>
+            <div>
+                <Link to="/mywishlist">Wishlist</Link>
+            </div>
+            <div>
+                <Link to="/myorders">Orders</Link>
+            </div>
+            <div>
+                <Link to="/mycart">Cart</Link>
+            </div>
+        </div>
+    </div>
+
     const NavLinks = <>
         <li className='text-grey tracking-wider'>
             {/* <Link to="/productspage">Find-products</Link> */}
             <form onSubmit={(e) => e.preventDefault()} className='flex bg-base-200 py-1 px-2 w-full gap-2 rounded-3xl'>
-                <input onChange={(e) => setSearchText(e.target.value)} className=' outline-none bg-transparent rounded-full px-3 py-1 w-full' type='search' placeholder='Search for product' />
                 {
                     searchText ?
-                        <Link type="submit" to={`/productspage/${searchText}`} className='rounded-3xl'>
+                        <Link type="submit" to={`/productspage/${searchText}`} className='rounded-3xl flex justify-center items-center'>
                             {/* <img src={searchBtn} alt="" /> */}
                             <p className='text-2xl' >
                                 <BiSearchAlt2 />
                             </p>
                         </Link>
                         :
-                        <Link type="submit" to={`/productspage`} className='rounded-3xl'>
+                        <Link type="submit" to={`/productspage`} className='rounded-3xl flex justify-center items-center'>
                             {/* <img src={searchBtn} alt="" /> */}
                             <p className='text-2xl' >
                                 <BiSearchAlt2 />
                             </p>
                         </Link>
                 }
+                <input onChange={(e) => setSearchText(e.target.value)} className=' outline-none bg-transparent rounded-full px-3 py-1 w-full' type='search' placeholder='Search for product' />
                 <button className='hidden' onClick={handleSearchEnter} type='submit'>search</button>
             </form>
         </li>
@@ -79,34 +105,51 @@ export default function Navbar() {
                 {/* <li className="text-grey  tracking-wider">
                     <Link to="/contactus">Contact</Link>
                 </li> */}
-                <li className="text-grey  tracking-wider">
+                <li className="text-grey md:hidden tracking-wider">
                     <Link to="/myorders">my-Orders</Link>
                 </li>
-                <li className="text-grey  dropdown dropdown-hover  me-4">
-                    <Link to="/myprofile">
-                        <p className='text-2xl'>
+                <li className="text-grey dropdown dropdown-hover dropdown-end me-4 py-4 cursor-pointer hidden md:block">
+                    <label tabIndex={0} className="flex flex-col justify-center items-center gap-1">
+                        <p className='text-xl'>
                             <BsPerson />
                         </p>
+                        <p className='text-xs font-semibold'>Profile</p>
+                    </label>
+                    <div tabIndex={0} className="dropdown-content z-[100] menu p-2 shadow bg-base-100 mt-5 w-52">
+                        {
+                            ProfileDropdownMenu
+                        }
+                    </div>
+                </li>
+                <li className="text-grey font-semibold dropdown dropdown-hover me-4 md:hidden">
+                    <Link className='flex flex-col justify-center items-center gap-[2px]' to="/myprofile">
+                        <p className='text-xl'>
+                            <BsPerson />
+                        </p>
+                        <p className='text-xs'>Profile</p>
                     </Link>
                 </li>
-                <li className="text-grey font-semibold indicator me-4">
+                <li className="text-grey md:hidden font-semibold indicator me-4">
                     {wishlistCount ? <span className="bg-transparent indicator-item badge border-0 -top-1 text-primary p-0">{wishlistCount}</span> : ""}
-                    <Link className='' to="/mywishlist">
-                        <p className='text-2xl'>
+                    <Link className='flex flex-col justify-center items-center gap-[2px]' to="/mywishlist">
+                        <p className='text-xl'>
                             <AiOutlineHeart />
                         </p>
+                        <p className='text-xs'>Wishlist</p>
                     </Link>
                 </li>
                 <li className="text-grey font-semibold indicator me-4">
                     {cartCount ? <span className="bg-transparent indicator-item badge border-0 -top-1 text-primary p-0">{cartCount}</span> : ""}
-                    <Link to="/mycart">
-                        <p className='text-2xl'>
+                    <Link className='flex flex-col justify-center items-center gap-[2px]' to="/mycart">
+                        <p className='text-xl'>
                             <BsCart2 />
                         </p>
+                        <p className='text-xs'>Cart</p>
                     </Link>
                 </li>
             </>}
     </>
+
     return (
         // bg-[#F8F8F8]
         <nav className={`bg-base-100 shadow z-10 transition-all duration-500 w-full`}>
@@ -161,7 +204,7 @@ export default function Navbar() {
                             className={`flex-1 justify-self-center pb-3 mt-2 font-bold md:font-normal md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
                                 }`}
                         >
-                            <ul className={`items-center justify-center space-y-4 md:flex md:space-x-8 md:space-y-0 uppercase text-sm`}>
+                            <ul className={`items-center justify-center space-y-4 md:flex md:space-x-5 md:space-y-0 tracking-wider text-sm`}>
                                 {
                                     NavLinks
                                 }

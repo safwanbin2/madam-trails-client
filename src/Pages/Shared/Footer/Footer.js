@@ -9,7 +9,7 @@ const Footer = () => {
                     <Link className='text-primary text-xl uppercase font-bold tracking-wider' to="/">
                         <h2 className="">MadamTrails</h2>
                     </Link>
-                    <p>XYZ Industries Ltd.<br />Providing reliable products since 2023</p>
+                    <p><br />Providing reliable products since 2023</p>
                 </div>
                 <div>
                     <span className="footer-title">Services</span>
