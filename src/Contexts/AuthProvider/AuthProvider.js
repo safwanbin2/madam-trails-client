@@ -3,7 +3,7 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStat
 import app from '../../Firebase/firebase.init';
 
 const auth = getAuth(app);
-// const googleProvider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
 export const AuthContext = createContext();
 
@@ -26,10 +26,10 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-    // const logInWithGoogle = () => {
-    //     setIsLoading(true);
-    //     return signInWithPopup(auth, googleProvider);
-    // }
+    const logInWithGoogle = () => {
+        setIsLoading(true);
+        return signInWithPopup(auth, googleProvider);
+    }
 
     const update = (name) => {
         setIsLoading(true);
@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
     // user from db
     useEffect(() => {
         if (user?.email) {
-            fetch(`https://working-title-server.vercel.app/users/myprofile?email=${user?.email}`)
+            fetch(`http://localhost:5000/users/myprofile?email=${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setUserDB(data)
@@ -72,7 +72,7 @@ const AuthProvider = ({ children }) => {
         isLoading,
         createUser,
         logInWithEmail,
-        // logInWithGoogle,
+        logInWithGoogle,
         update,
         logOut,
         setIsLoading,

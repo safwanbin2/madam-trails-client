@@ -7,7 +7,7 @@ const Messages = () => {
     const { data: messages, isLoading } = useQuery({
         queryKey: ["mesages", "all"],
         queryFn: async () => {
-            const res = await fetch(`https://working-title-server.vercel.app/messages/all`);
+            const res = await fetch(`http://localhost:5000/messages/all`);
             const data = await res.json();
             return data;
         }

@@ -37,7 +37,7 @@ const AddProduct = () => {
                     isBoosted: false
                 }
                 // posting the new movie to the db
-                fetch(`https://working-title-server.vercel.app/products/add`, {
+                fetch(`http://localhost:5000/products/add`, {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"
@@ -164,8 +164,10 @@ const AddProduct = () => {
                                 required: "Select a Sub category"
                             })
                         } className="shadow  bg-white focus:outline-none rounded p-2  w-full">
-                            <option value="clothe">Clothe</option>
-                            <option value="beauty">Beauty</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="makeup">Make Up</option>
+                            <option value="skincare">Skin Care</option>
+                            <option value="haircare">Hair Care</option>
                         </select>
                         {errors.subCategory && <label className="label text-red-400 text-xs ps-0">
                             <span className="">{errors.subCategory.message}</span>

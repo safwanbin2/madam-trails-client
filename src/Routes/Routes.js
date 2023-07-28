@@ -53,13 +53,13 @@ export const router = createBrowserRouter([
             {
                 path: "/productspage/:searchText",
                 element: <ProductPage />,
-                // loader: ({ params }) => fetch(`https://working-title-server.vercel.app/products/find?q=${params.searchText}&category=""`)
+                // loader: ({ params }) => fetch(`http://localhost:5000/products/find?q=${params.searchText}&category=""`)
                 loader: ({ params }) => (params.searchText)
             },
             // products related routes and navigations
             {
                 path: "/product/:id",
-                loader: ({ params }) => fetch(`https://working-title-server.vercel.app/product/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
                 element: <ProductDetail />
             },
             // nav items navigations
@@ -78,7 +78,7 @@ export const router = createBrowserRouter([
             {
                 path: "/blog/:id",
                 element: <Post />,
-                loader: ({ params }) => fetch(`https://working-title-server.vercel.app/blogs/blog/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/blogs/blog/${params.id}`)
             },
             {
                 path: "/mycart",
@@ -99,7 +99,7 @@ export const router = createBrowserRouter([
             {
                 path: "/myorders/:id",
                 element: <MyOrder />,
-                loader: ({ params }) => fetch(`https://working-title-server.vercel.app/orders/myorders/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/orders/myorders/${params.id}`)
             },
             {
                 path: "myprofile",

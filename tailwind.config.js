@@ -11,15 +11,15 @@ module.exports = {
       {
         dark: {
           // "primary": "#FF6B6B",
-          // "primary": "#FF6666", 
-          "primary": "#176B87", 
+          "primary": "#F11A7B", 
+          // "primary": "#068FFF", 
           // "primary": "#30AADD",
-          "secondary": "#5C6AC4",
-          "base-100": "#F8F8F8",
-          accent: '#ff0000',       // Bright yellow
+          "secondary": "#FF78C4",
+          "base-100": "#F5F5F5",
+          accent: '#FFFEC4',       // Bright yellow
           "third": '#333333',         // Dark gray
           // "info": "#FFD9D9",
-          "info": "#DAFFFB",
+          "info": "#FFD1DA",
           "success": "#36d399",
           "warning": "#fbbd23",
           "error": "#f87272",

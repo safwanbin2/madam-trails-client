@@ -27,13 +27,13 @@ export default function Navbar() {
 
     // fetching for wishlist count
     useEffect(() => {
-        fetch(`https://working-title-server.vercel.app/wishlist/mycount?email=${user?.email}`)
+        fetch(`http://localhost:5000/wishlist/mycount?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setWishlistCount(data.count))
     }, [user, countRefetch, userDB]);
     // fetching for cart count
     useEffect(() => {
-        fetch(`https://working-title-server.vercel.app/cart/mycount?email=${user?.email}`)
+        fetch(`http://localhost:5000/cart/mycount?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setCartCount(data.count))
     }, [user, countRefetch, userDB]);
@@ -65,6 +65,13 @@ export default function Navbar() {
         </div>
     </div>
 
+    const WomenDropdownMenu = <div className='p-3 grid grid-cols-2 gap-2 font-semibold'>
+        <Link to={`productspage/`}>Fashion</Link>
+        <Link to={`productspage/`}>Make Up</Link>
+        <Link to={`productspage/`}>Skin Care</Link>
+        <Link to={`productspage/`}>Hair Care</Link>
+    </div>
+
     const NavLinks = <>
         <li className='text-grey tracking-wider'>
             {/* <Link to="/productspage">Find-products</Link> */}
@@ -73,14 +80,14 @@ export default function Navbar() {
                     searchText ?
                         <Link type="submit" to={`/productspage/${searchText}`} className='rounded-3xl flex justify-center items-center'>
                             {/* <img src={searchBtn} alt="" /> */}
-                            <p className='text-2xl' >
+                            <p className='text-2xl text-primary' >
                                 <BiSearchAlt2 />
                             </p>
                         </Link>
                         :
                         <Link type="submit" to={`/productspage`} className='rounded-3xl flex justify-center items-center'>
                             {/* <img src={searchBtn} alt="" /> */}
-                            <p className='text-2xl' >
+                            <p className='text-2xl text-primary' >
                                 <BiSearchAlt2 />
                             </p>
                         </Link>
@@ -89,10 +96,7 @@ export default function Navbar() {
                 <button className='hidden' onClick={handleSearchEnter} type='submit'>search</button>
             </form>
         </li>
-        {/* <li className="text-grey  tracking-wider">
-            <Link to="/aboutus">About</Link>
-        </li> */}
-        <li className="text-grey  tracking-wider">
+        <li className="text-grey tracking-wider flex md:hidden">
             <Link to="/blog">Blogs</Link>
         </li>
         {isAdmin ? < li className='text-grey tracking-wider font-bold' >
@@ -102,20 +106,17 @@ export default function Navbar() {
             </Link>
         </li >
             : <>
-                {/* <li className="text-grey  tracking-wider">
-                    <Link to="/contactus">Contact</Link>
-                </li> */}
                 <li className="text-grey md:hidden tracking-wider">
                     <Link to="/myorders">my-Orders</Link>
                 </li>
                 <li className="text-grey dropdown dropdown-hover dropdown-end me-4 py-4 cursor-pointer hidden md:block">
-                    <label tabIndex={0} className="flex flex-col justify-center items-center gap-1">
-                        <p className='text-xl'>
+                    <label tabIndex={0} className="flex flex-col justify-center items-center gap-[1px]">
+                        <p className='text-xl mt-[.5px] text-primary'>
                             <BsPerson />
                         </p>
                         <p className='text-xs font-semibold'>Profile</p>
                     </label>
-                    <div tabIndex={0} className="dropdown-content z-[100] menu p-2 shadow bg-base-100 mt-5 w-52">
+                    <div tabIndex={0} className="dropdown-content z-[100] menu p-2 shadow-md bg-base-100 mt-[18px] w-52 left-1/2 transform -translate-x-1/2">
                         {
                             ProfileDropdownMenu
                         }
@@ -123,44 +124,70 @@ export default function Navbar() {
                 </li>
                 <li className="text-grey font-semibold dropdown dropdown-hover me-4 md:hidden">
                     <Link className='flex flex-col justify-center items-center gap-[2px]' to="/myprofile">
-                        <p className='text-xl'>
+                        <p className='text-xl mt-[.5px] text-primary'>
                             <BsPerson />
                         </p>
-                        <p className='text-xs'>Profile</p>
+                        <p className='text-xs font-semibold'>Profile</p>
                     </Link>
                 </li>
                 <li className="text-grey md:hidden font-semibold indicator me-4">
-                    {wishlistCount ? <span className="bg-transparent indicator-item badge border-0 -top-1 text-primary p-0">{wishlistCount}</span> : ""}
+                    {wishlistCount ? <span className="bg-transparent indicator-item badge border-0 -top-[2px] text-primary p-0">{wishlistCount}</span> : ""}
                     <Link className='flex flex-col justify-center items-center gap-[2px]' to="/mywishlist">
-                        <p className='text-xl'>
+                        <p className='text-xl text-primary'>
                             <AiOutlineHeart />
                         </p>
-                        <p className='text-xs'>Wishlist</p>
+                        <p className='text-xs font-semibold'>Wishlist</p>
                     </Link>
                 </li>
                 <li className="text-grey font-semibold indicator me-4">
-                    {cartCount ? <span className="bg-transparent indicator-item badge border-0 -top-1 text-primary p-0">{cartCount}</span> : ""}
-                    <Link className='flex flex-col justify-center items-center gap-[2px]' to="/mycart">
-                        <p className='text-xl'>
+                    {cartCount ? <span className="bg-transparent indicator-item badge border-0 -top-[2px] text-primary p-0">{cartCount}</span> : ""}
+                    <Link className='flex flex-col justify-center items-center gap-[1px]' to="/mycart">
+                        <p className='text-xl -mt-[.5px] text-primary'>
                             <BsCart2 />
                         </p>
-                        <p className='text-xs'>Cart</p>
+                        <p className='text-xs font-semibold'>Cart</p>
                     </Link>
                 </li>
             </>}
     </>
 
     return (
-        // bg-[#F8F8F8]
-        <nav className={`bg-base-100 shadow z-10 transition-all duration-500 w-full`}>
+        <nav className={`bg-base-100 shadow z-10 transition-all duration-500 w-full fixed top-0 left-0`}>
             <div className={`${navbar ? "bg-base-100 shadow" : ""}`}>
                 <div className="justify-between w-11/12 mx-auto md:items-center md:flex">
                     <div>
-                        <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                            <Link className='text-primary text-2xl uppercase tracking-wider' to="/">
-                                {/* <h2 className="">MadamTrails</h2> */}
-                                <img className='h-[32px]' src={m} alt="" />
-                            </Link>
+                        <div className="flex items-center justify-between md:block">
+                            <ul className='flex justify-center items-center md:space-x-8 md:space-y-0 tracking-wider'>
+                                <li>
+                                    <Link className='text-primary text-2xl uppercase font-bold' to="/">
+                                        <h2 className="">pending</h2>
+                                        {/* <img className='h-[32px]' src={m} alt="" /> */}
+                                    </Link>
+                                </li>
+                                <li>
+                                    <li className="text-grey tracking-wider hidden md:flex cursor-pointer">
+                                        <span className='font-semibold' to="/">Men</span>
+                                    </li>
+                                </li>
+                                <li className=' dropdown dropdown-hover py-6'>
+                                    <label tabIndex={0} className="flex flex-col justify-center items-center gap-[1px]">
+                                        <p className=' font-semibold'>Women</p>
+                                    </label>
+                                    {/* <li className="text-grey tracking-wider hidden md:flex cursor-pointer">
+                                        <span className='font-semibold' to="/blog">Women</span>
+                                    </li> */}
+                                    <div tabIndex={0} className="dropdown-content z-[100] menu p-2 shadow-md bg-base-100 mt-[26px] w-52 left-1/2 transform -translate-x-1/2">
+                                        {
+                                            WomenDropdownMenu
+                                        }
+                                    </div>
+                                </li>
+                                <li>
+                                    <li className="text-grey tracking-wider hidden md:flex">
+                                        <Link className='font-semibold' to="/blog">Blogs</Link>
+                                    </li>
+                                </li>
+                            </ul>
                             <div className="md:hidden">
                                 <button
                                     className="p-2 text-gray-700 rounded-md outline-none "
@@ -204,7 +231,7 @@ export default function Navbar() {
                             className={`flex-1 justify-self-center pb-3 mt-2 font-bold md:font-normal md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
                                 }`}
                         >
-                            <ul className={`items-center justify-center space-y-4 md:flex md:space-x-5 md:space-y-0 tracking-wider text-sm`}>
+                            <ul className={`items-center justify-center space-y-4 md:flex md:space-x-8 md:space-y-0 tracking-wider text-sm`}>
                                 {
                                     NavLinks
                                 }

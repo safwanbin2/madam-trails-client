@@ -10,30 +10,44 @@ const ProductPage = () => {
     const searchText = useLoaderData();
     // const [searchText, setSearchText] = useState("");
     const [categoryText, setCategoryText] = useState("");
+    const [subCategoryText, setSubCategoryText] = useState("");
     // const { register, handleSubmit } = useForm();
     // const handleFormSubmit = data => {
     //     setCategoryText("");
     //     setSearchText(data.search);
     // }
     const { data: products, isLoading } = useQuery({
-        queryKey: [searchText, "/products/find", categoryText],
+        queryKey: [searchText, "/products/find", categoryText, subCategoryText],
         queryFn: async () => {
-            const res = await fetch(`https://working-title-server.vercel.app/products/find?q=${searchText ? searchText : ""}&category=${categoryText}`);
+            const res = await fetch(`http://localhost:5000/products/find?q=${searchText ? searchText : ""}&category=${categoryText}&subCategory=${subCategoryText}`);
             const data = await res.json();
             return data;
         }
     })
+    
+    console.log(products)
+    // const handleReset = () => {
+    //     setCategoryText("");
+    //     setSubCategoryText("");
+    // }
 
     return (
         <div>
             <div className=''>
                 <div className='w-11/12 mx-auto py-2 md:py-4 flex flex-col md:flex-row gap-2'>
                     <div className=''>
-                        <h2 className='text-xl mb-3 text-grey'>Categories: </h2>
-                        <div className='w-full md:w-auto flex gap-2'>
-                            <button onClick={() => setCategoryText("")} className={`${categoryText === "" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent"} px-4 md:px-10 py-1 text-sm md:text-base rounded-3xl hover:shadow-lg border  transition-all duration-300 w-full`}>All</button>
-                            <button onClick={() => setCategoryText("men")} className={`${categoryText === "men" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent"} px-4 md:px-10 py-1 text-sm md:text-base rounded-3xl hover:shadow-lg border  transition-all duration-300 w-full`}>Men</button>
-                            <button onClick={() => setCategoryText("women")} className={`${categoryText === "women" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent "} px-4 md:px-10 py-1 text-sm md:text-base rounded-3xl hover:shadow-lg border transition-all duration-300 w-full`}>Women</button>
+                        <h2 className='text-xl mb-3 text-grey'>Filter: </h2>
+                        {/* <div className='w-10/12 md:w-6/12 flex gap-2'>
+                            <button onClick={handleReset} className={`${categoryText === "" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent"} px-4 md:px-6 py-1 text-sm  rounded-3xl hover:shadow-lg border  transition-all duration-300 w-full`}>All</button>
+                            <button onClick={() => setCategoryText("men")} className={`${categoryText === "men" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent"} px-4 md:px-6 py-1 text-sm  rounded-3xl hover:shadow-lg border  transition-all duration-300 w-full`}>Men</button>
+                            <button onClick={() => setCategoryText("women")} className={`${categoryText === "women" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent "} px-4 md:px-6 py-1 text-sm  rounded-3xl hover:shadow-lg border transition-all duration-300 w-full`}>Women</button>
+                        </div> */}
+                        <div className='w-auto md:w-6/12 flex gap-2 '>
+                            <button onClick={() => setSubCategoryText("")} className={`${subCategoryText === "" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent"} px-4 md:px-6 py-1 text-sm  rounded-3xl hover:shadow-lg border  transition-all duration-300 w-full tracking-widest`}>All</button>
+                            <button onClick={() => setSubCategoryText("fashion")} className={`${subCategoryText === "fashion" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent"} px-4 md:px-6 py-1 text-sm  rounded-3xl hover:shadow-lg border  transition-all duration-300 w-full tracking-widest`}>Fashion</button>
+                            <button onClick={() => setSubCategoryText("makeup")} className={`${subCategoryText === "makeup" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent "} px-4 md:px-6 py-1 text-sm  rounded-3xl hover:shadow-lg border transition-all duration-300 w-full tracking-widest`}>MakeUp</button>
+                            <button onClick={() => setSubCategoryText("skincare")} className={`${subCategoryText === "skincare" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent "} px-4 md:px-6 py-1 text-sm  rounded-3xl hover:shadow-lg border transition-all duration-300 w-full tracking-widest`}>SkinCare</button>
+                            <button onClick={() => setSubCategoryText("haircare")} className={`${subCategoryText === "haircare" ? "text-primary bg-white border-primary" : "bg-primary text-white border-transparent "} px-4 md:px-6 py-1 text-sm  rounded-3xl hover:shadow-lg border transition-all duration-300 w-full tracking-widest`}>HairCare</button>
                         </div>
                     </div>
                 </div>

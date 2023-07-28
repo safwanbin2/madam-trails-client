@@ -7,22 +7,11 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import { Autoplay, EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 
-import slide_image_1 from '../../../Assets/Banner/demo-banner.jpg';
-import slide_image_2 from '../../../Assets/Banner/demo-banner.jpg';
-import slide_image_3 from '../../../Assets/Banner/demo-banner.jpg';
-import slide_image_4 from '../../../Assets/Banner/demo-banner.jpg';
-import slide_image_5 from '../../../Assets/Banner/demo-banner.jpg';
-import slide_image_6 from '../../../Assets/Banner/demo-banner.jpg';
-import slide_image_7 from '../../../Assets/Banner/demo-banner.jpg';
+import slide_image_1 from '../../../Assets/Banner/rush-dessert.png';
+import slide_image_2 from '../../../Assets/Banner/rush-promo.png';
 import { Link } from 'react-router-dom';
-
-// navigation={{
-//     nextEl: '.swiper-button-next',
-//     prevEl: '.swiper-button-prev',
-//     clickable: true,
-// }}
 
 const SliderHome = () => {
     return (
@@ -40,28 +29,26 @@ const SliderHome = () => {
                     modifier: 2.5,
                 }}
                 pagination={{ el: '.swiper-pagination', clickable: true }}
-                modules={[EffectCoverflow, Pagination, Navigation]}
-                autoplay={{ delay: 1000 }}
+                modules={[Autoplay, EffectCoverflow, Pagination, Navigation]}
+                autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                  }}
                 className='swiper_container'
             >
                 <SwiperSlide>
                     <Link to={`/productspage`}>
-                        <img className='w-full h-full md:h-[350px]' src={slide_image_1} alt="slide_image" />
+                        <img className='w-full ' src={slide_image_1} alt="slide_image" />
                     </Link>
                 </SwiperSlide>
                 <SwiperSlide>
                     <Link to={`/productspage`}>
-                        <img className='w-full h-full md:h-[350px]' src={slide_image_2} alt="slide_image" />
+                        <img className='w-full ' src={slide_image_2} alt="slide_image" />
                     </Link>
                 </SwiperSlide>
-                <SwiperSlide>
-                    <Link to={`/productspage`}>
-                        <img className='w-full h-full md:h-[350px]' src={slide_image_3} alt="slide_image" />
-                    </Link>
-                </SwiperSlide>
-
+                
                 <div className="slider-controler ">
-                    <div style={{ position: "relative" }} className="swiper-pagination mt-3 w-full flex justify-center items-center h-5 gap-2 cursor-pointer"></div>
+                    <div style={{ position: "relative" }} className="swiper-pagination mt-3 w-full flex justify-center items-center h-5 gap-1 cursor-pointer"></div>
                 </div>
             </Swiper>
         </div>

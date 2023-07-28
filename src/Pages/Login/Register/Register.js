@@ -5,9 +5,10 @@ import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import saveUser from '../../../Hooks/saveUser';
 import { toast } from 'react-hot-toast';
 import LoadingPage from '../../../Components/LoadingPage';
+import { FcGoogle } from 'react-icons/fc';
 
 const Register = () => {
-    const { createUser, user: User, isLoading, setIsLoading, update } = useContext(AuthContext);
+    const { createUser, user: User, isLoading, setIsLoading, update, logInWithGoogle } = useContext(AuthContext);
     const [consent, setConsent] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const date = new Date();
@@ -41,6 +42,28 @@ const Register = () => {
         update(name)
             .then(() => { })
             .catch(err => console.error(err));
+    }
+
+    const handleLogInWithGoogle = () => {
+        logInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                if (user.uid) {
+                    saveUser(user.email, user.displayName, "", "", date);
+                    setIsLoading(false);
+                    navigate("/");
+                }
+                toast.success(`Logged in`);
+                console.log(user);
+            })
+            .catch(err => {
+                console.error(err)
+                setIsLoading(false);
+                if (err.message) {
+                    return toast.error(err.message)
+                }
+                toast.error("Error Occured")
+            })
     }
 
     if (isLoading) {
@@ -164,16 +187,18 @@ const Register = () => {
                             </span>
                         </label>
                     </div>
-                    {
-                        consent ?
-                            <div className='flex justify-center items-center'>
-                                <button className='px-10 py-2 bg-primary text-white me-4 rounded-3xl hover:shadow-lg' type='submit'>Create Account</button>
-                            </div>
-                            :
-                            <div className='flex justify-center items-center'>
-                                <button disabled className='px-10 py-2 text-white bg-base-300 me-4 rounded-3xl hover:shadow-lg'>Create Account</button>
-                            </div>
-                    }
+                    <div className='grid grid-cols-2 justify-center items-center mt-4 gap-4'>
+                        {
+                            consent ?
+                                <button className='px-10 py-2 bg-primary text-white rounded-3xl hover:shadow-lg' type='submit'>Create Account</button>
+                                :
+                                <button disabled className='px-10 py-2 text-white bg-base-300 rounded-3xl hover:shadow-lg'>Create Account</button>
+                        }
+                        <button onClick={() => handleLogInWithGoogle()} className='px-10 py-2 bg-white text-primary  rounded-3xl hover:shadow-lg flex justify-center items-center'>
+                            <FcGoogle className='text-2xl' />
+                            <p>oogle</p>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
