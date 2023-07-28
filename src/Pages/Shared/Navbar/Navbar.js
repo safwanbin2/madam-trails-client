@@ -14,7 +14,7 @@ export default function Navbar() {
     const [wishlistCount, setWishlistCount] = useState(0);
     const [cartCount, setCartCount] = useState(0);
     const [searchText, setSearchText] = useState("");
-    const { user, countRefetch, userDB } = useContext(AuthContext);
+    const { user, countRefetch, userDB, setSubCategoryText } = useContext(AuthContext);
     const [isAdmin, isAdminLoading] = useAdmin(user?.email);
     const navigate = useNavigate();
 
@@ -66,10 +66,10 @@ export default function Navbar() {
     </div>
 
     const WomenDropdownMenu = <div className='p-3 grid grid-cols-2 gap-2 font-semibold'>
-        <Link to={`productspage/`}>Fashion</Link>
-        <Link to={`productspage/`}>Make Up</Link>
-        <Link to={`productspage/`}>Skin Care</Link>
-        <Link to={`productspage/`}>Hair Care</Link>
+        <Link onClick={() => setSubCategoryText("fashion")} to={`/productspage/`}>Fashion</Link>
+        <Link onClick={() => setSubCategoryText("makeup")} to={`/productspage/`}>Make Up</Link>
+        <Link onClick={() => setSubCategoryText("skincare")} to={`/productspage/`}>Skin Care</Link>
+        <Link onClick={() => setSubCategoryText("haircare")} to={`/productspage/`}>Hair Care</Link>
     </div>
 
     const NavLinks = <>
@@ -157,7 +157,7 @@ export default function Navbar() {
                 <div className="justify-between w-11/12 mx-auto md:items-center md:flex">
                     <div>
                         <div className="flex items-center justify-between md:block">
-                            <ul className='flex justify-center items-center md:space-x-8 md:space-y-0 tracking-wider'>
+                            <ul className='flex justify-center items-center space-x-4 md:space-x-8 md:space-y-0 tracking-wider'>
                                 <li>
                                     <Link className='text-primary text-2xl uppercase font-bold' to="/">
                                         <h2 className="">pending</h2>
@@ -165,7 +165,7 @@ export default function Navbar() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <li className="text-grey tracking-wider hidden md:flex cursor-pointer">
+                                    <li className=" cursor-pointer">
                                         <span className='font-semibold' to="/">Men</span>
                                     </li>
                                 </li>
@@ -173,10 +173,7 @@ export default function Navbar() {
                                     <label tabIndex={0} className="flex flex-col justify-center items-center gap-[1px]">
                                         <p className=' font-semibold'>Women</p>
                                     </label>
-                                    {/* <li className="text-grey tracking-wider hidden md:flex cursor-pointer">
-                                        <span className='font-semibold' to="/blog">Women</span>
-                                    </li> */}
-                                    <div tabIndex={0} className="dropdown-content z-[100] menu p-2 shadow-md bg-base-100 mt-[26px] w-52 left-1/2 transform -translate-x-1/2">
+                                    <div tabIndex={0} className="dropdown-content z-[100] menu p-2 shadow-md bg-base-100 mt-[24px] w-52 left-1/2 transform -translate-x-1/2">
                                         {
                                             WomenDropdownMenu
                                         }

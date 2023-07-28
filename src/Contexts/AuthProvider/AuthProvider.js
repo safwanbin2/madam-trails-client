@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import app from '../../Firebase/firebase.init';
 
@@ -14,6 +14,9 @@ const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isUserDBLoading, setIsUserDBLoading] = useState(true);
     const [countRefetch, setCountRefetch] = useState(true);
+
+    // experimental subcategory
+    const [subCategoryText, setSubCategoryText] = useState("");
 
     // function for signing in or singing out
     const createUser = (email, password) => {
@@ -78,7 +81,9 @@ const AuthProvider = ({ children }) => {
         setIsLoading,
         countRefetch,
         setCountRefetch,
-        isUserDBLoading
+        isUserDBLoading,
+        subCategoryText,
+        setSubCategoryText
     }
     return (
         <AuthContext.Provider value={authInfo}>

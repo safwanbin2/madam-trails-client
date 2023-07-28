@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
-// import SecondNavbar from './SecondNavbar/SecondNavbar';
-import { useForm } from 'react-hook-form';
+import React, { useContext, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import LoadingPage from '../../Components/LoadingPage';
 import ProductCard from '../../Components/ProductCard';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const ProductPage = () => {
     const searchText = useLoaderData();
+    const {subCategoryText, setSubCategoryText} = useContext(AuthContext);
     // const [searchText, setSearchText] = useState("");
     const [categoryText, setCategoryText] = useState("");
-    const [subCategoryText, setSubCategoryText] = useState("");
-    // const { register, handleSubmit } = useForm();
-    // const handleFormSubmit = data => {
-    //     setCategoryText("");
-    //     setSearchText(data.search);
-    // }
+    // const [subCategoryText, setSubCategoryText] = useState("");
+    
     const { data: products, isLoading } = useQuery({
         queryKey: [searchText, "/products/find", categoryText, subCategoryText],
         queryFn: async () => {
@@ -24,12 +20,6 @@ const ProductPage = () => {
             return data;
         }
     })
-    
-    console.log(products)
-    // const handleReset = () => {
-    //     setCategoryText("");
-    //     setSubCategoryText("");
-    // }
 
     return (
         <div>

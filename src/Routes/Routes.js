@@ -53,7 +53,6 @@ export const router = createBrowserRouter([
             {
                 path: "/productspage/:searchText",
                 element: <ProductPage />,
-                // loader: ({ params }) => fetch(`http://localhost:5000/products/find?q=${params.searchText}&category=""`)
                 loader: ({ params }) => (params.searchText)
             },
             // products related routes and navigations
