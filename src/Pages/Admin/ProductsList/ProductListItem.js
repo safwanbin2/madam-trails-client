@@ -11,7 +11,7 @@ const ProductListItem = ({ product, refetch }) => {
     const handleDelete = id => {
         const consent = window.confirm("Deleting the product will autometically delete cart and wishlist items from users, you may lose Track of data");
         if (consent) {
-            fetch(`http://localhost:5000/products/delete/${id}`, {
+            fetch(`https://working-title-server.vercel.app/products/delete/${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())
@@ -31,7 +31,7 @@ const ProductListItem = ({ product, refetch }) => {
 
     const handleBoosted = (id, bool) => {
         console.log(bool);
-        fetch(`http://localhost:5000/products/boosted?id=${id}&isBoosted=${bool}`, {
+        fetch(`https://working-title-server.vercel.app/products/boosted?id=${id}&isBoosted=${bool}`, {
             method: "PUT"
         })
             .then(res => res.json())

@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className=''>
       <SliderHome />
-      <div className=' my-6'>
+      <div className='w-11/12 mx-auto my-6'>
         <CategoriesHome
           title={"Fashion"}
           category={"fashion"}

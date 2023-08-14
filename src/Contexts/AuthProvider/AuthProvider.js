@@ -59,7 +59,7 @@ const AuthProvider = ({ children }) => {
     // user from db
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/users/myprofile?email=${user?.email}`)
+            fetch(`https://working-title-server.vercel.app/users/myprofile?email=${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setUserDB(data)

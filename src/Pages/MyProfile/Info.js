@@ -11,7 +11,7 @@ const Info = ({ profile }) => {
     })
 
     const handleUpdateInfo = info => {
-        fetch(`http://localhost:5000/users/myprofile?email=${email}`, {
+        fetch(`https://working-title-server.vercel.app/users/myprofile?email=${email}`, {
             method: "PUT",
             headers: {
                 "Content-type": "application/json"

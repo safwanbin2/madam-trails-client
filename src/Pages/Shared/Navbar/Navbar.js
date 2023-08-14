@@ -27,13 +27,13 @@ export default function Navbar() {
 
     // fetching for wishlist count
     useEffect(() => {
-        fetch(`http://localhost:5000/wishlist/mycount?email=${user?.email}`)
+        fetch(`https://working-title-server.vercel.app/wishlist/mycount?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setWishlistCount(data.count))
     }, [user, countRefetch, userDB]);
     // fetching for cart count
     useEffect(() => {
-        fetch(`http://localhost:5000/cart/mycount?email=${user?.email}`)
+        fetch(`https://working-title-server.vercel.app/cart/mycount?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setCartCount(data.count))
     }, [user, countRefetch, userDB]);
@@ -65,11 +65,11 @@ export default function Navbar() {
         </div>
     </div>
 
-    const WomenDropdownMenu = <div className='p-3 grid grid-cols-2 gap-2 font-semibold'>
-        <Link onClick={() => setSubCategoryText("fashion")} to={`/productspage/`}>Fashion</Link>
-        <Link onClick={() => setSubCategoryText("makeup")} to={`/productspage/`}>Make Up</Link>
-        <Link onClick={() => setSubCategoryText("skincare")} to={`/productspage/`}>Skin Care</Link>
-        <Link onClick={() => setSubCategoryText("haircare")} to={`/productspage/`}>Hair Care</Link>
+    const WomenDropdownMenu = <div className='p-3 grid grid-cols-2 gap-2 '>
+        <Link className='hover:font-semibold' onClick={() => setSubCategoryText("fashion")} to={`/productspage/`}>Fashion</Link>
+        <Link className='hover:font-semibold' onClick={() => setSubCategoryText("makeup")} to={`/productspage/`}>Make Up</Link>
+        <Link className='hover:font-semibold' onClick={() => setSubCategoryText("skincare")} to={`/productspage/`}>Skin Care</Link>
+        <Link className='hover:font-semibold' onClick={() => setSubCategoryText("haircare")} to={`/productspage/`}>Hair Care</Link>
     </div>
 
     const NavLinks = <>
@@ -159,21 +159,21 @@ export default function Navbar() {
                         <div className="flex items-center justify-between md:block">
                             <ul className='flex justify-center items-center space-x-4 md:space-x-8 md:space-y-0 tracking-wider'>
                                 <li>
-                                    <Link className='text-primary text-2xl uppercase font-bold' to="/">
+                                    <Link className='text-primary text-xl md:text-2xl uppercase font-bold' to="/">
                                         <h2 className="">pending</h2>
                                         {/* <img className='h-[32px]' src={m} alt="" /> */}
                                     </Link>
                                 </li>
                                 <li>
                                     <li className=" cursor-pointer">
-                                        <span className='font-semibold' to="/">Men</span>
+                                        <span className='font-semibold line-through' to="/">Men</span>
                                     </li>
                                 </li>
                                 <li className=' dropdown dropdown-hover py-6'>
                                     <label tabIndex={0} className="flex flex-col justify-center items-center gap-[1px]">
                                         <p className=' font-semibold'>Women</p>
                                     </label>
-                                    <div tabIndex={0} className="dropdown-content z-[100] menu p-2 shadow-md bg-base-100 mt-[24px] w-52 left-1/2 transform -translate-x-1/2">
+                                    <div tabIndex={0} className="dropdown-content z-[100] menu p-2 shadow-md bg-base-100 mt-[25px] w-52 left-1/2 transform -translate-x-1/2">
                                         {
                                             WomenDropdownMenu
                                         }

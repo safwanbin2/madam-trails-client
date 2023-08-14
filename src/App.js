@@ -4,6 +4,9 @@ import { router } from './Routes/Routes';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
+  // document.addEventListener('contextmenu', function (event) {
+  //   event.preventDefault();
+  // });
   return (
     <div className='bg-white'>
       <RouterProvider router={router}>

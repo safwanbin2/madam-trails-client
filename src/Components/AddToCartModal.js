@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Contexts/AuthProvider/AuthProvider';
 import { toast } from 'react-hot-toast';
 
-const AddToCartModal = ({ product, setProduct, quantity }) => {
+const AddToCartModal = ({ product, setProduct, quantity, size }) => {
     const { userDB, user, countRefetch, setCountRefetch } = useContext(AuthContext);
     const [reference, setReference] = useState("");
     const { title, subTitle, price, _id, category, subCategory, image } = product;
@@ -17,6 +17,7 @@ const AddToCartModal = ({ product, setProduct, quantity }) => {
         "productCategory": category,
         "productSubCategory": subCategory,
         "quantity": quantity,
+        "size": size,
         "productPrice": price,
         "buyerName": user?.displayName,
         "buyerEmail": user?.email,
@@ -30,7 +31,7 @@ const AddToCartModal = ({ product, setProduct, quantity }) => {
         if (!user) {
             return toast.error("Login to your account first")
         }
-        fetch(`http://localhost:5000/cart/additem`, {
+        fetch(`https://working-title-server.vercel.app/cart/additem`, {
             method: "POST",
             headers: {
                 "Content-type": "Application/json"
@@ -61,6 +62,7 @@ const AddToCartModal = ({ product, setProduct, quantity }) => {
                 <h3 className="text-grey  my-1">{title} - {subTitle}</h3>
                 <p className='text-2xl font-semibold text-primary my-1'>₹ {price}</p>
                 <h3 className='my-1'>Quantity: {quantity}</h3>
+                <h3 className='my-1'>Size: {size}</h3>
                 <div className="form-control mb-2">
                     <label className="label ps-0">
                         <span className="text-sm">reference: </span>

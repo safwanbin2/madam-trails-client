@@ -12,7 +12,7 @@ const WishlistItem = ({ item, refetch }) => {
     const handleRemoveFromWishlist = id => {
         const consent = window.confirm("Are you sure you want to remove item from wishlist?");
         if (consent) {
-            fetch(`http://localhost:5000/wishlist/delete?id=${id}`, {
+            fetch(`https://working-title-server.vercel.app/wishlist/delete?id=${id}`, {
                 method: "DELETE"
             })
                 .then(res => res.json())

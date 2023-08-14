@@ -35,6 +35,9 @@ const ProductDetail = () => {
             window.alert("Can not reduce further");
         }
     }
+    // states for size
+    const [size, setSize] = useState("m");
+
     // adding to wishlist
     const handleAddToWishlist = id => {
         if (!user?.uid) {
@@ -52,7 +55,7 @@ const ProductDetail = () => {
             // "buyerId": ,
             "buyerEmail": user?.email
         }
-        fetch(`http://localhost:5000/wishlist`, {
+        fetch(`https://working-title-server.vercel.app/wishlist`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -80,7 +83,7 @@ const ProductDetail = () => {
             <h2 className='text-grey text-xl font-semibold'>{title} - {subTitle}</h2>
             <div className="border-t border-[#bdbbbb] my-6"></div>
             <div className='flex flex-col md:grid gap-4' style={{ gridTemplateColumns: "3fr 2fr" }}>
-                <img className='w-full h-[400px]' src={image} alt="" />
+                <img className='w-full h-[500px]' src={image} alt="" />
                 <div className='bg-info shadow-md p-4 text-grey'>
                     <h2 className='text-2xl font-semibold tracking-wider mb-2'>₹ {price}</h2>
                     <h2 className='text-green-500 flex items-center  mb-2'><span className='text-2xl'><TiTick /></span> <span>Available</span></h2>
@@ -97,6 +100,20 @@ const ProductDetail = () => {
                         </div>
                         <p className='text-sm'>Minimum quantity for "{title} - {subTitle}" is 1.</p>
                     </div>
+                    {
+                        subCategory === "fashion" &&
+                        <div className='my-6'>
+                            <h2>Select Size: </h2>
+                            <div className='grid grid-cols-6 gap-1 md:w-9/12 '>
+                                <button onClick={() => setSize("xs")} className={`transition-all duration-200 uppercase h-8 w-12 ${size === "xs" ? "bg-primary text-white" : "bg-white text-primary"}`}>xs</button>
+                                <button onClick={() => setSize("s")} className={`transition-all duration-200 uppercase h-8 w-12 ${size === "s" ? "bg-primary text-white" : "bg-white text-primary"}`}>s</button>
+                                <button onClick={() => setSize("m")} className={`transition-all duration-200 uppercase h-8 w-12 ${size === "m" ? "bg-primary text-white" : "bg-white text-primary"}`}>m</button>
+                                <button onClick={() => setSize("l")} className={`transition-all duration-200 uppercase h-8 w-12 ${size === "l" ? "bg-primary text-white" : "bg-white text-primary"}`}>l</button>
+                                <button onClick={() => setSize("xl")} className={`transition-all duration-200 uppercase h-8 w-12 ${size === "xl" ? "bg-primary text-white" : "bg-white text-primary"}`}>xl</button>
+                                <button onClick={() => setSize("xxl")} className={`transition-all duration-200 uppercase h-8 w-12 ${size === "xxl" ? "bg-primary text-white" : "bg-white text-primary"}`}>xxl</button>
+                            </div>
+                        </div>
+                    }
                     {
                         isAdmin ? ""
                             : <div className='mt-8 grid grid-cols-2'>
@@ -116,7 +133,7 @@ const ProductDetail = () => {
                 <h2 className='text-xl text-grey my-4'>Product Description: </h2>
                 <ul className='ps-10 mb-6'>
                     <li className='text-grey list-disc text-sm'>Product type - {subCategory}</li>
-                    <li className='text-grey list-disc text-sm'>Brand - Champion</li>
+                    <li className='text-grey list-disc text-sm'>Brand - {brand}</li>
                 </ul>
                 <p className='text-grey'>{description}</p>
             </div>
@@ -125,6 +142,7 @@ const ProductDetail = () => {
                     product={modalProduct}
                     setProduct={setModalProduct}
                     quantity={qty}
+                    size={size}
                 />
                     : ""
             }
